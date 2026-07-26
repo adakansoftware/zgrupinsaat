@@ -36,6 +36,8 @@ async function run() {
   const csp = globalSecurityHeaders.find((entry) => entry.key === 'Content-Security-Policy')?.value || ''
 
   assert.match(csp, /script-src-attr 'none'/)
+  assert.equal(globalSecurityHeaders.find((entry) => entry.key === 'X-Permitted-Cross-Domain-Policies')?.value, 'none')
+  assert.equal(globalSecurityHeaders.find((entry) => entry.key === 'X-Download-Options')?.value, 'noopen')
   assert.equal(adminSecurityHeaders.find((entry) => entry.key === 'Cache-Control')?.value, 'private, no-store, max-age=0')
   assert.equal(adminSecurityHeaders.find((entry) => entry.key === 'X-Robots-Tag')?.value, 'noindex, nofollow, noarchive')
   assert.equal(apiSecurityHeaders.find((entry) => entry.key === 'Cache-Control')?.value, 'no-store, max-age=0')
