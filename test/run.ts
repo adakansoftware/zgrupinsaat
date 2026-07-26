@@ -111,6 +111,7 @@ async function run() {
   assert.equal(isCleanPublicPathUrl('/uploads\\photo.jpg', 'uploads'), false)
   assert.equal(isCleanPublicPathUrl('/uploads/%2e%2e/images/logo.png', 'uploads'), false)
   assert.equal(isCleanPublicPathUrl('/images/%2e%2e/uploads/photo.jpg', 'images'), false)
+  assert.equal(isCleanPublicPathUrl(`/images/${'a'.repeat(501)}`, 'images'), false)
   assert.equal(isCleanPublicPathUrl('/images/hero-main.jpg', 'images'), true)
   assert.equal(isCleanPublicPathUrl('/images/../uploads/photo.jpg', 'images'), false)
   assert.equal(isPathInside(path.join('public', 'uploads'), path.join('public', 'uploads', 'photo.jpg')), true)

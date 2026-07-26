@@ -1,6 +1,8 @@
 import path from 'path'
 
 export function isCleanPublicPathUrl(fileUrl: string, rootSegment: 'images' | 'uploads') {
+  if (fileUrl.length > 500) return false
+
   let decodedUrl: string
   try {
     decodedUrl = decodeURIComponent(fileUrl)
