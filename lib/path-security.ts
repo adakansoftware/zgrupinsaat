@@ -1,10 +1,17 @@
 import path from 'path'
 
 export function isCleanPublicPathUrl(fileUrl: string, rootSegment: 'images' | 'uploads') {
-  if (fileUrl.includes('\\') || fileUrl.includes('\0')) return false
-  if (!fileUrl.startsWith(`/${rootSegment}/`)) return false
+  let decodedUrl: string
+  try {
+    decodedUrl = decodeURIComponent(fileUrl)
+  } catch {
+    return false
+  }
 
-  const segments = fileUrl.split('/').filter(Boolean)
+  if (decodedUrl.includes('\\') || decodedUrl.includes('\0')) return false
+  if (!decodedUrl.startsWith(`/${rootSegment}/`)) return false
+
+  const segments = decodedUrl.split('/').filter(Boolean)
   return segments[0] === rootSegment && !segments.some((segment) => segment === '.' || segment === '..')
 }
 
