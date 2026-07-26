@@ -70,6 +70,8 @@ async function run() {
   assert.equal(isValidSignedAdminSessionToken('a'.repeat(513), process.env.ADMIN_SESSION_SECRET), false)
   assert.equal(isValidSignedAdminSessionToken(`${'a'.repeat(385)}.${'b'.repeat(43)}`, process.env.ADMIN_SESSION_SECRET), false)
   assert.equal(isValidSignedAdminSessionToken(createSignedAdminSessionToken(process.env.ADMIN_SESSION_SECRET, 60), process.env.ADMIN_SESSION_SECRET), true)
+  assert.throws(() => createSignedAdminSessionToken(process.env.ADMIN_SESSION_SECRET, 0), RangeError)
+  assert.throws(() => createSignedAdminSessionToken(process.env.ADMIN_SESSION_SECRET, 24 * 60 * 60 + 1), RangeError)
 
   const hashedPassword = hashPasswordWithScrypt('super-secure-password', Buffer.alloc(16, 7))
   assert.equal(isValidPasswordHashFormat(hashedPassword), true)

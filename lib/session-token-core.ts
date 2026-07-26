@@ -17,6 +17,7 @@ const MAX_SESSION_TOKEN_LENGTH = 512
 const MAX_SESSION_PAYLOAD_LENGTH = 384
 const SESSION_SIGNATURE_LENGTH = 43
 const BASE64URL_PATTERN = /^[A-Za-z0-9_-]+$/
+const MAX_SESSION_AGE_SECONDS = 24 * 60 * 60
 
 function base64UrlEncode(value: string) {
   return Buffer.from(value, 'utf8').toString('base64url')
@@ -42,6 +43,10 @@ function sign(value: string, secret: string) {
 }
 
 export function createSignedAdminSessionToken(secret: string, maxAgeSeconds: number) {
+  if (!Number.isInteger(maxAgeSeconds) || maxAgeSeconds <= 0 || maxAgeSeconds > MAX_SESSION_AGE_SECONDS) {
+    throw new RangeError('Invalid session lifetime.')
+  }
+
   const now = Math.floor(Date.now() / 1000)
   const payload: SessionPayload = {
     sub: 'admin',
