@@ -41,7 +41,12 @@ export async function readJson<T>(request: Request, parser: { parse: (value: unk
     throw new ApiError(400, 'Gecersiz istek verisi.')
   }
 
-  const body = JSON.parse(rawBody || 'null')
+  let body: unknown
+  try {
+    body = JSON.parse(rawBody || 'null')
+  } catch {
+    throw new ApiError(400, 'Gecersiz istek verisi.')
+  }
 
   try {
     return parser.parse(body)
