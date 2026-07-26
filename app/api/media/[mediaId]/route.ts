@@ -3,6 +3,7 @@ import { mediaUpdateSchema } from '@/lib/validation'
 import { assertAdminRequest, enforceRateLimit } from '@/lib/security'
 import { assertRequestBodySize, assertRequestContentType } from '@/lib/request-guards'
 import { writeAuditLog } from '@/lib/audit'
+import { isValidUuidRouteParam } from '@/lib/route-params-core'
 import { deleteProjectMedia, updateProjectMedia } from '@/lib/project-service'
 
 type Params = { params: Promise<{ mediaId: string }> }
@@ -14,6 +15,7 @@ export async function DELETE(request: Request, { params }: Params) {
     await assertAdminRequest(request)
 
     const { mediaId } = await params
+    if (!isValidUuidRouteParam(mediaId)) return jsonError(400, 'Gecersiz medya kimligi.')
     const deleted = await deleteProjectMedia(mediaId)
 
     if (!deleted) {
@@ -33,6 +35,7 @@ export async function PATCH(request: Request, { params }: Params) {
     assertRequestBodySize(request, MEDIA_UPDATE_MAX_BYTES)
 
     const { mediaId } = await params
+    if (!isValidUuidRouteParam(mediaId)) return jsonError(400, 'Gecersiz medya kimligi.')
     const payload = await readJson(request, mediaUpdateSchema, MEDIA_UPDATE_MAX_BYTES)
     const updated = await updateProjectMedia(mediaId, payload)
 

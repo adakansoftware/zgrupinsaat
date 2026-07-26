@@ -26,6 +26,7 @@ async function run() {
   const { anonymizeAuditIp } = await import('../lib/audit-core.ts')
   const { serializeJsonForScript } = await import('../lib/json-script-core.ts')
   const { readRequestTextWithinLimit } = await import('../lib/request-body-core.ts')
+  const { isValidUuidRouteParam } = await import('../lib/route-params-core.ts')
   const { isCleanPublicPathUrl, isPathInside } = await import('../lib/path-security.ts')
 
   const nextConfig = await import('../next.config.mjs')
@@ -190,6 +191,9 @@ async function run() {
   assert.equal(anonymizeAuditIp('203.0.113.24', process.env.ADMIN_SESSION_SECRET).length, 20)
   assert.notEqual(anonymizeAuditIp('203.0.113.24', process.env.ADMIN_SESSION_SECRET), '203.0.113.24')
   assert.equal(anonymizeAuditIp('unknown', process.env.ADMIN_SESSION_SECRET), undefined)
+  assert.equal(isValidUuidRouteParam('550e8400-e29b-41d4-a716-446655440000'), true)
+  assert.equal(isValidUuidRouteParam('../settings'), false)
+  assert.equal(isValidUuidRouteParam('x'.repeat(65)), false)
   const escapedJsonLd = serializeJsonForScript({ label: '</script><script>alert(1)</script>' })
   assert.ok(!escapedJsonLd.includes('</script>'))
   assert.ok(escapedJsonLd.includes('\\u003c/script\\u003e'))

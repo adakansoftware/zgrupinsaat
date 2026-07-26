@@ -4,6 +4,7 @@ import { projectInputSchema } from '@/lib/validation'
 import { assertAdminRequest, enforceRateLimit } from '@/lib/security'
 import { assertRequestBodySize, assertRequestContentType } from '@/lib/request-guards'
 import { writeAuditLog } from '@/lib/audit'
+import { isValidUuidRouteParam } from '@/lib/route-params-core'
 import { deleteProject, findAdminProjectById, updateProject } from '@/lib/project-service'
 
 type Params = { params: Promise<{ id: string }> }
@@ -12,6 +13,7 @@ const PROJECT_MUTATION_MAX_BYTES = 32 * 1024
 export async function GET(_: Request, { params }: Params) {
   return withErrorHandling(async () => {
     const { id } = await params
+    if (!isValidUuidRouteParam(id)) return jsonError(400, 'Gecersiz proje kimligi.')
     const project = await findAdminProjectById(id)
     if (!project) return jsonError(404, 'Proje bulunamadı.')
 
@@ -31,6 +33,7 @@ export async function PATCH(request: Request, { params }: Params) {
     assertRequestBodySize(request, PROJECT_MUTATION_MAX_BYTES)
 
     const { id } = await params
+    if (!isValidUuidRouteParam(id)) return jsonError(400, 'Gecersiz proje kimligi.')
     const payload = await readJson(request, projectInputSchema, PROJECT_MUTATION_MAX_BYTES)
     const project = await updateProject(id, payload)
     if (!project) return jsonError(404, 'Proje bulunamadı.')
@@ -46,6 +49,7 @@ export async function DELETE(request: Request, { params }: Params) {
     await assertAdminRequest(request)
 
     const { id } = await params
+    if (!isValidUuidRouteParam(id)) return jsonError(400, 'Gecersiz proje kimligi.')
     const deleted = await deleteProject(id)
 
     if (!deleted) {

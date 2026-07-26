@@ -3,6 +3,7 @@ import { messageStateSchema } from '@/lib/validation'
 import { assertAdminRequest, enforceRateLimit } from '@/lib/security'
 import { assertRequestBodySize, assertRequestContentType } from '@/lib/request-guards'
 import { writeAuditLog } from '@/lib/audit'
+import { isValidUuidRouteParam } from '@/lib/route-params-core'
 import { deleteMessage, updateMessageReadState } from '@/lib/message-service'
 
 type Params = { params: Promise<{ id: string }> }
@@ -16,6 +17,7 @@ export async function PATCH(request: Request, { params }: Params) {
     assertRequestBodySize(request, MESSAGE_UPDATE_MAX_BYTES)
 
     const { id } = await params
+    if (!isValidUuidRouteParam(id)) return jsonError(400, 'Gecersiz mesaj kimligi.')
     const payload = await readJson(request, messageStateSchema, MESSAGE_UPDATE_MAX_BYTES)
     const message = await updateMessageReadState(id, payload.isRead)
 
@@ -34,6 +36,7 @@ export async function DELETE(request: Request, { params }: Params) {
     await assertAdminRequest(request)
 
     const { id } = await params
+    if (!isValidUuidRouteParam(id)) return jsonError(400, 'Gecersiz mesaj kimligi.')
     const deleted = await deleteMessage(id)
 
     if (!deleted) {
