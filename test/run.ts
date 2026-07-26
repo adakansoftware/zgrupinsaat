@@ -267,6 +267,19 @@ async function run() {
         method: 'POST',
         headers: {
           origin: 'https://example.com',
+          'sec-fetch-site': 'cross-site',
+        },
+      }),
+      'https://example.com',
+    ),
+    false,
+  )
+  assert.equal(
+    isTrustedOriginRequest(
+      new Request('https://example.com/api/projects', {
+        method: 'POST',
+        headers: {
+          origin: 'https://example.com',
         },
       }),
       null,
