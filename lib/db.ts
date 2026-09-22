@@ -2,7 +2,7 @@ import { Pool, type PoolClient, type QueryResultRow } from 'pg'
 import { env } from '@/lib/env'
 
 declare global {
-  var __saliPgPool: Pool | undefined
+  var __zgrupPgPool: Pool | undefined
 }
 
 function createPool() {
@@ -18,11 +18,11 @@ function createPool() {
 }
 
 export function getDbPool() {
-  if (!globalThis.__saliPgPool) {
-    globalThis.__saliPgPool = createPool()
+  if (!globalThis.__zgrupPgPool) {
+    globalThis.__zgrupPgPool = createPool()
   }
 
-  return globalThis.__saliPgPool
+  return globalThis.__zgrupPgPool
 }
 
 export async function withDbClient<T>(run: (client: PoolClient) => Promise<T>) {

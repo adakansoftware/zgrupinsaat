@@ -1,4 +1,4 @@
-# Salihogullari Corporate Platform
+# Z GRUP İNŞAAT Corporate Platform
 
 Production-ready corporate website and admin panel built with Next.js 16.
 
@@ -97,8 +97,8 @@ npm run db:import:file-data
 
 ## Handoff Documents
 
-- [README_ADMIN.md](C:\Users\adaka\Desktop\sali_admin_full\README_ADMIN.md)
-- [CLIENT_HANDOFF.md](C:\Users\adaka\Desktop\sali_admin_full\CLIENT_HANDOFF.md)
-- [DELIVERY_CHECKLIST.md](C:\Users\adaka\Desktop\sali_admin_full\DELIVERY_CHECKLIST.md)
-- [DEPLOYMENT.md](C:\Users\adaka\Desktop\sali_admin_full\DEPLOYMENT.md)
-- [PRODUCTION_MIGRATION.md](C:\Users\adaka\Desktop\sali_admin_full\PRODUCTION_MIGRATION.md)
+- [README_ADMIN.md](README_ADMIN.md)
+- [CLIENT_HANDOFF.md](CLIENT_HANDOFF.md)
+- [DELIVERY_CHECKLIST.md](DELIVERY_CHECKLIST.md)
+- [DEPLOYMENT.md](DEPLOYMENT.md)
+- [PRODUCTION_MIGRATION.md](PRODUCTION_MIGRATION.md)

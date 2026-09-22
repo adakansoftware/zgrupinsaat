@@ -45,4 +45,4 @@
 - Concurrent edits are hardened, but a shared database is still the correct future upgrade for larger teams.
 - The upload API is intentionally disabled in this build; production image management currently relies on controlled `public/images` assets or a future object-storage integration.
 - If the live domain changes, update both `APP_ORIGIN` and `NEXT_PUBLIC_SITE_URL` together.
-- See [PRODUCTION_MIGRATION.md](C:\Users\adaka\Desktop\sali_admin_full\PRODUCTION_MIGRATION.md) before moving to multi-instance or serverless production.
+- See [PRODUCTION_MIGRATION.md](PRODUCTION_MIGRATION.md) before moving to multi-instance or serverless production.

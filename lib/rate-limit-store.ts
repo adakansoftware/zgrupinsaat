@@ -33,15 +33,15 @@ class MemoryRateLimitStore implements RateLimitStore {
 }
 
 declare global {
-  var __saliRateLimitStore: RateLimitStore | undefined
+  var __zgrupRateLimitStore: RateLimitStore | undefined
 }
 
 export function getRateLimitStore() {
-  if (!globalThis.__saliRateLimitStore) {
-    globalThis.__saliRateLimitStore = new MemoryRateLimitStore()
+  if (!globalThis.__zgrupRateLimitStore) {
+    globalThis.__zgrupRateLimitStore = new MemoryRateLimitStore()
   }
 
-  return globalThis.__saliRateLimitStore
+  return globalThis.__zgrupRateLimitStore
 }
 
 export function getRateLimitStoreDriver() {

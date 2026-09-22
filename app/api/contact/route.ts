@@ -55,7 +55,7 @@ async function sendContactMail(payload: { name: string; phone: string; email: st
 
   if (!apiKey) {
     if (process.env.NODE_ENV !== 'production') {
-      console.log('[mock-contact-email]', { to: 'teklif@salihogullari.com', reference, payload })
+      console.log('[mock-contact-email]', { to: 'teklif@zgrupinsaat.com', reference, payload })
       return
     }
 
@@ -65,7 +65,7 @@ async function sendContactMail(payload: { name: string; phone: string; email: st
   const resend = new Resend(apiKey)
   await resend.emails.send({
     from: process.env.RESEND_FROM?.trim() || 'onboarding@resend.dev',
-    to: ['teklif@salihogullari.com'],
+    to: ['teklif@zgrupinsaat.com'],
     subject: `Yeni Talep: ${payload.subject}`,
     html: buildMailHtml(payload, reference),
     text: buildMailText(payload, reference),
