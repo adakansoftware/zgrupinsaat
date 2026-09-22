@@ -12,8 +12,8 @@ export default async function AdminProjectsPage() {
       <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
         <div>
           <div className="section-eyebrow mb-4">Proje Yönetimi</div>
-          <h1 className="font-display text-4xl text-white sm:text-5xl md:text-6xl">Projeler</h1>
-          <p className="mt-3 max-w-3xl text-white/60">
+          <h1 className="font-display text-4xl text-foreground sm:text-5xl md:text-6xl">Projeler</h1>
+          <p className="mt-3 max-w-3xl text-foreground/60">
             Referans işlerinizi daha hızlı filtreleyin, görünürlüğünü takip edin ve medya düzenini tek akışta yönetin.
           </p>
         </div>
@@ -22,16 +22,16 @@ export default async function AdminProjectsPage() {
 
       <div className="grid gap-4 md:grid-cols-3">
         <div className="admin-kpi rounded-[24px] p-5">
-          <div className="data-label text-white/40">Toplam Proje</div>
-          <div className="mt-3 text-4xl font-black text-white">{projects.length}</div>
+          <div className="data-label text-foreground/40">Toplam Proje</div>
+          <div className="mt-3 text-4xl font-black text-foreground">{projects.length}</div>
         </div>
         <div className="admin-kpi rounded-[24px] p-5">
-          <div className="data-label text-white/40">Yayında</div>
-          <div className="mt-3 text-4xl font-black text-white">{publishedCount}</div>
+          <div className="data-label text-foreground/40">Yayında</div>
+          <div className="mt-3 text-4xl font-black text-foreground">{publishedCount}</div>
         </div>
         <div className="admin-kpi rounded-[24px] p-5">
-          <div className="data-label text-white/40">Öne Çıkan</div>
-          <div className="mt-3 text-4xl font-black text-white">{featuredCount}</div>
+          <div className="data-label text-foreground/40">Öne Çıkan</div>
+          <div className="mt-3 text-4xl font-black text-foreground">{featuredCount}</div>
         </div>
       </div>
 

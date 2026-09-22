@@ -51,7 +51,7 @@ export function AdminMediaLibrary({ entries }: Props) {
       <div className="admin-surface rounded-[28px] p-5">
         <div className="grid gap-4 xl:grid-cols-[1.3fr_0.7fr_0.7fr_auto_auto_auto]">
           <label className="relative">
-            <Search className="pointer-events-none absolute top-1/2 left-4 h-4 w-4 -translate-y-1/2 text-white/35" />
+            <Search className="pointer-events-none absolute top-1/2 left-4 h-4 w-4 -translate-y-1/2 text-foreground/35" />
             <input
               className="input-premium pl-11"
               placeholder="Medya adı, proje adı veya yol ara"
@@ -69,28 +69,28 @@ export function AdminMediaLibrary({ entries }: Props) {
             <option value="Yayında">Yayında</option>
             <option value="Taslak">Taslak</option>
           </select>
-          <label className="admin-surface-muted flex items-center gap-3 rounded-2xl px-4 py-3 text-sm text-white/70">
+          <label className="admin-surface-muted flex items-center gap-3 rounded-2xl px-4 py-3 text-sm text-foreground/70">
             <input type="checkbox" checked={brokenOnly} onChange={(event) => setBrokenOnly(event.target.checked)} />
             Sadece kırık
           </label>
-          <label className="admin-surface-muted flex items-center gap-3 rounded-2xl px-4 py-3 text-sm text-white/70">
+          <label className="admin-surface-muted flex items-center gap-3 rounded-2xl px-4 py-3 text-sm text-foreground/70">
             <input type="checkbox" checked={coverOnly} onChange={(event) => setCoverOnly(event.target.checked)} />
             Sadece kapak
           </label>
-          <div className="admin-surface-muted rounded-2xl px-4 py-3 text-sm text-white/55">{filteredEntries.length} kayıt</div>
+          <div className="admin-surface-muted rounded-2xl px-4 py-3 text-sm text-foreground/55">{filteredEntries.length} kayıt</div>
         </div>
 
         <div className="mt-4 grid gap-3 sm:grid-cols-3">
-          <span className="admin-surface-muted rounded-2xl px-4 py-3 text-sm text-white/65">Görsel: {imageCount}</span>
-          <span className="admin-surface-muted rounded-2xl px-4 py-3 text-sm text-white/65">Video: {videoCount}</span>
-          <span className="admin-surface-muted rounded-2xl px-4 py-3 text-sm text-white/65">Kırık: {brokenCount}</span>
+          <span className="admin-surface-muted rounded-2xl px-4 py-3 text-sm text-foreground/65">Görsel: {imageCount}</span>
+          <span className="admin-surface-muted rounded-2xl px-4 py-3 text-sm text-foreground/65">Video: {videoCount}</span>
+          <span className="admin-surface-muted rounded-2xl px-4 py-3 text-sm text-foreground/65">Kırık: {brokenCount}</span>
         </div>
       </div>
 
       <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         {filteredEntries.map((entry) => (
           <div key={entry.media.id} className="admin-surface-muted overflow-hidden rounded-[26px]">
-            <div className="aspect-[4/3] overflow-hidden bg-black/40">
+            <div className="aspect-[4/3] overflow-hidden bg-background/40">
               {entry.media.resourceType === 'video' ? (
                 <YouTubeVideo url={entry.media.fileUrl} title={entry.media.title || entry.project.title} className="h-full w-full" />
               ) : (
@@ -102,25 +102,25 @@ export function AdminMediaLibrary({ entries }: Props) {
 
             <div className="p-5">
               <div className="flex flex-wrap items-center gap-2">
-                <span className={`rounded-full px-3 py-1 text-xs ${entry.media.resourceType === 'video' ? 'bg-sky-400/10 text-sky-300' : 'bg-amber-400/10 text-amber-300'}`}>
+                <span className={`rounded-full px-3 py-1 text-xs ${entry.media.resourceType === 'video' ? 'bg-sky-400/10 text-sky-300' : 'bg-primary/10 text-primary'}`}>
                   {entry.media.resourceType === 'video' ? (
                     <span className="inline-flex items-center gap-1"><Video className="h-3 w-3" /> Video</span>
                   ) : (
                     <span className="inline-flex items-center gap-1"><Images className="h-3 w-3" /> Görsel</span>
                   )}
                 </span>
-                {entry.media.isCover ? <span className="rounded-full bg-emerald-400/10 px-3 py-1 text-xs text-emerald-300">Kapak</span> : null}
+                {entry.media.isCover ? <span className="rounded-full bg-emerald-400/10 px-3 py-1 text-xs text-emerald-700">Kapak</span> : null}
                 {entry.broken ? (
-                  <span className="rounded-full bg-red-400/10 px-3 py-1 text-xs text-red-300 inline-flex items-center gap-1">
+                  <span className="rounded-full bg-red-400/10 px-3 py-1 text-xs text-red-700 inline-flex items-center gap-1">
                     <AlertTriangle className="h-3 w-3" />
                     Kırık
                   </span>
                 ) : null}
               </div>
 
-              <div className="mt-4 text-lg font-medium text-white">{entry.media.title || 'Başlıksız medya'}</div>
-              <div className="mt-2 text-sm text-white/45">{entry.project.title} • {entry.project.status}</div>
-              <div className="mt-3 line-clamp-2 break-all text-xs text-white/45">{entry.media.fileUrl}</div>
+              <div className="mt-4 text-lg font-medium text-foreground">{entry.media.title || 'Başlıksız medya'}</div>
+              <div className="mt-2 text-sm text-foreground/45">{entry.project.title} • {entry.project.status}</div>
+              <div className="mt-3 line-clamp-2 break-all text-xs text-foreground/45">{entry.media.fileUrl}</div>
 
               <div className="mt-5 flex flex-wrap gap-3">
                 <Link href={`/admin/projects/${entry.project.id}`} className="btn-ghost-premium inline-flex h-10 items-center px-4">
@@ -141,7 +141,7 @@ export function AdminMediaLibrary({ entries }: Props) {
         ))}
 
         {filteredEntries.length === 0 ? (
-          <div className="rounded-[24px] border border-dashed border-white/10 bg-black/20 p-10 text-center text-white/50 md:col-span-2 xl:col-span-3">
+          <div className="rounded-[24px] border border-dashed border-foreground/10 bg-background/20 p-10 text-center text-foreground/50 md:col-span-2 xl:col-span-3">
             Bu filtrelerle eşleşen medya kaydı görünmüyor.
           </div>
         ) : null}

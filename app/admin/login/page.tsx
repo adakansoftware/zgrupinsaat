@@ -24,25 +24,25 @@ export default async function AdminLoginPage({
   }
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-black px-6 py-16">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(245,158,11,0.12),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(245,158,11,0.08),transparent_32%)]" />
+    <main className="relative min-h-screen overflow-hidden bg-background px-6 py-16">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(144,6,0,0.12),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(144,6,0,0.08),transparent_32%)]" />
       <div className="container-shell relative z-10 flex min-h-[80vh] items-center justify-center">
-        <div className="w-full max-w-5xl rounded-[36px] border border-white/10 bg-white/[0.025] p-4 md:p-8">
+        <div className="w-full max-w-5xl rounded-[36px] border border-foreground/10 bg-foreground/[0.025] p-4 md:p-8">
           <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
             <div className="hidden lg:block">
               <div className="section-eyebrow mb-4">Yetkili erişim</div>
-              <h1 className="font-display text-6xl leading-[0.95] text-white">Yönetim paneline giriş yapın</h1>
-              <p className="mt-5 max-w-xl text-lg leading-8 text-white/60">
+              <h1 className="font-display text-6xl leading-[0.95] text-foreground">Yönetim paneline giriş yapın</h1>
+              <p className="mt-5 max-w-xl text-lg leading-8 text-foreground/60">
                 Yetkili hesap bilgilerinizle panele güvenli şekilde giriş yapın.
               </p>
               <div className="mt-8 grid max-w-xl grid-cols-2 gap-4">
-                <div className="rounded-[24px] border border-white/10 bg-white/[0.03] p-5">
-                  <div className="data-label text-white/40">Erişim</div>
-                  <div className="mt-3 text-lg text-white">Yetkili giriş</div>
+                <div className="rounded-[24px] border border-foreground/10 bg-foreground/[0.03] p-5">
+                  <div className="data-label text-foreground/40">Erişim</div>
+                  <div className="mt-3 text-lg text-foreground">Yetkili giriş</div>
                 </div>
-                <div className="rounded-[24px] border border-white/10 bg-white/[0.03] p-5">
-                  <div className="data-label text-white/40">Oturum</div>
-                  <div className="mt-3 text-lg text-white">Korunan panel</div>
+                <div className="rounded-[24px] border border-foreground/10 bg-foreground/[0.03] p-5">
+                  <div className="data-label text-foreground/40">Oturum</div>
+                  <div className="mt-3 text-lg text-foreground">Korunan panel</div>
                 </div>
               </div>
             </div>

@@ -20,8 +20,8 @@ export function Footer({ settings }: { settings: SiteSettings }) {
             <Link href="/" className="mb-6 flex min-w-0 items-center gap-3">
               <div className="relative flex h-11 w-14 shrink-0 items-center justify-center overflow-visible">
                 <Image
-                  src="/images/salihogullari-logo-small.png"
-                  alt="Sallıhoğulları Hafriyat logo"
+                  src="/images/z-grup-logo-small.png"
+                  alt="Z GRUP İNŞAAT logo"
                   fill
                   sizes="56px"
                   className="object-contain"

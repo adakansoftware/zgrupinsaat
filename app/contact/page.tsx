@@ -8,15 +8,15 @@ import { getSiteSettings } from '@/lib/settings-service'
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'İletişim | Sallıhoğulları Hafriyat',
+    absolute: 'İletişim | Z GRUP İNŞAAT',
   },
-  description: 'Hafriyat, temel kazısı, dolgu, nakliyat ve iş makinesi hizmetleri için Sallıhoğulları Hafriyat ile teklif ve iletişim talebi oluşturun.',
+  description: 'Hafriyat, temel kazısı, dolgu, nakliyat ve iş makinesi hizmetleri için Z GRUP İNŞAAT ile teklif ve iletişim talebi oluşturun.',
   alternates: {
     canonical: getCanonicalUrl('/contact'),
   },
   ...buildShareMetadata({
-    title: 'İletişim | Sallıhoğulları Hafriyat',
-    description: 'Hafriyat, temel kazısı, dolgu, nakliyat ve iş makinesi hizmetleri için Sallıhoğulları Hafriyat ile teklif ve iletişim talebi oluşturun.',
+    title: 'İletişim | Z GRUP İNŞAAT',
+    description: 'Hafriyat, temel kazısı, dolgu, nakliyat ve iş makinesi hizmetleri için Z GRUP İNŞAAT ile teklif ve iletişim talebi oluşturun.',
     pathname: '/contact',
   }),
 }

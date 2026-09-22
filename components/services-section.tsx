@@ -38,7 +38,7 @@ export function ServicesSection() {
               <div className={`relative w-full ${index === 0 ? 'h-full min-h-[400px] lg:min-h-[500px]' : 'h-56 lg:h-64'}`}>
                 <Image
                   src={service.image}
-                  alt={`${service.title} - Sallıhoğulları Hafriyat iş makinesi hizmetleri`}
+                  alt={`${service.title} - Z GRUP İNŞAAT iş makinesi hizmetleri`}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                   sizes={index === 0 ? '(min-width: 1024px) 66vw, 100vw' : '(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw'}

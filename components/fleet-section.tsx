@@ -42,7 +42,7 @@ export function FleetSection({ items, stats }: FleetSectionProps) {
             >
               <div className="flex flex-col lg:flex-row">
                 <div className="relative h-64 w-full shrink-0 lg:h-auto lg:w-1/2">
-                  <Image src={item.image} alt={`${item.name} - Sallıhoğulları Hafriyat iş makinesi ve araç filosu`} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <Image src={item.image} alt={`${item.name} - Z GRUP İNŞAAT iş makinesi ve araç filosu`} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
                   <div className="absolute inset-0 hidden bg-gradient-to-r from-transparent to-background/80 lg:block" />
                   <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent lg:hidden" />
 

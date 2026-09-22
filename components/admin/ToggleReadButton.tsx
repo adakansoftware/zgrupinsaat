@@ -46,7 +46,7 @@ export function ToggleReadButton({ messageId, isRead }: { messageId: string; isR
       <button onClick={handleToggle} disabled={loading} className="btn-ghost-premium h-10 px-4">
         {loading ? '...' : isRead ? 'Yeniden Yeni Yap' : 'Okundu Yap'}
       </button>
-      {error ? <div role="alert" aria-live="assertive" className="text-xs text-red-300">{error}</div> : null}
+      {error ? <div role="alert" aria-live="assertive" className="text-xs text-red-700">{error}</div> : null}
     </div>
   )
 }

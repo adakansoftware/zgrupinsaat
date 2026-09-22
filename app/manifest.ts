@@ -2,13 +2,13 @@ import type { MetadataRoute } from 'next'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Sallıhoğulları Hafriyat',
-    short_name: 'Sallıhoğulları',
+    name: 'Z GRUP İNŞAAT',
+    short_name: 'Z GRUP',
     description: 'Adana merkezli hafriyat, damperli nakliyat, lowbed ve arazöz hizmetleri.',
     start_url: '/',
     display: 'standalone',
-    background_color: '#050505',
-    theme_color: '#050505',
+    background_color: '#ffffff',
+    theme_color: '#ffffff',
     lang: 'tr-TR',
     icons: [
       {

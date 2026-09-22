@@ -10,15 +10,15 @@ import { getSiteSettings } from '@/lib/settings-service'
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'İş Makinesi ve Araç Filosu | Sallıhoğulları Hafriyat',
+    absolute: 'İş Makinesi ve Araç Filosu | Z GRUP İNŞAAT',
   },
-  description: 'Sallıhoğulları Hafriyat’ın ekskavatör, beko loder, silindir, damperli kamyon, lowbed ve arazöz gibi iş makinesi ve araç filosunu inceleyin.',
+  description: 'Z GRUP İNŞAAT’ın ekskavatör, beko loder, silindir, damperli kamyon, lowbed ve arazöz gibi iş makinesi ve araç filosunu inceleyin.',
   alternates: {
     canonical: getCanonicalUrl('/fleet'),
   },
   ...buildShareMetadata({
-    title: 'İş Makinesi ve Araç Filosu | Sallıhoğulları Hafriyat',
-    description: 'Sallıhoğulları Hafriyat’ın ekskavatör, beko loder, silindir, damperli kamyon, lowbed ve arazöz gibi iş makinesi ve araç filosunu inceleyin.',
+    title: 'İş Makinesi ve Araç Filosu | Z GRUP İNŞAAT',
+    description: 'Z GRUP İNŞAAT’ın ekskavatör, beko loder, silindir, damperli kamyon, lowbed ve arazöz gibi iş makinesi ve araç filosunu inceleyin.',
     pathname: '/fleet',
   }),
 }

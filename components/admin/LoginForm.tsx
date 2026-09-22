@@ -60,23 +60,23 @@ export function LoginForm({ nextPath = '/admin' }: { nextPath?: string }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} aria-busy={loading} className="industrial-border premium-shadow w-full max-w-md rounded-[30px] bg-white/[0.045] p-8 md:p-9">
-      <div className="brand-logo-pulse relative mb-6 h-14 w-20 overflow-hidden bg-black">
+    <form onSubmit={handleSubmit} aria-busy={loading} className="industrial-border premium-shadow w-full max-w-md rounded-[30px] bg-foreground/[0.045] p-8 md:p-9">
+      <div className="brand-logo-pulse relative mb-6 h-14 w-20 overflow-hidden bg-background">
         <Image
-          src="/images/salihogullari-logo-small.png"
-          alt="Sallıhoğulları logo"
+          src="/images/z-grup-logo-small.png"
+          alt="Z GRUP logo"
           fill
           sizes="80px"
           className="object-contain"
         />
       </div>
       <div className="section-eyebrow mb-4">Admin girişi</div>
-      <h1 className="font-display text-5xl text-white">Yönetim Paneli</h1>
-      <p className="mt-3 text-white/60">Yalnızca yetkili kullanıcılar için güvenli giriş alanı.</p>
+      <h1 className="font-display text-5xl text-foreground">Yönetim Paneli</h1>
+      <p className="mt-3 text-foreground/60">Yalnızca yetkili kullanıcılar için güvenli giriş alanı.</p>
 
       <div className="mt-8 space-y-5">
         <div>
-          <label htmlFor="admin-email" className="mb-2 block text-sm font-medium text-white/70">E-posta</label>
+          <label htmlFor="admin-email" className="mb-2 block text-sm font-medium text-foreground/70">E-posta</label>
           <input
             id="admin-email"
             type="email"
@@ -91,7 +91,7 @@ export function LoginForm({ nextPath = '/admin' }: { nextPath?: string }) {
         </div>
 
         <div>
-          <label htmlFor="admin-password" className="mb-2 block text-sm font-medium text-white/70">Şifre</label>
+          <label htmlFor="admin-password" className="mb-2 block text-sm font-medium text-foreground/70">Şifre</label>
           <input
             id="admin-password"
             type="password"
@@ -105,7 +105,7 @@ export function LoginForm({ nextPath = '/admin' }: { nextPath?: string }) {
         </div>
       </div>
 
-      {error ? <p role="alert" aria-live="assertive" className="mt-4 rounded-2xl border border-red-400/15 bg-red-400/8 px-4 py-3 text-sm text-red-300">{error}</p> : null}
+      {error ? <p role="alert" aria-live="assertive" className="mt-4 rounded-2xl border border-red-400/15 bg-red-400/8 px-4 py-3 text-sm text-red-700">{error}</p> : null}
 
       <button type="submit" disabled={loading} className="btn-premium mt-6 h-12 w-full px-6">
         {loading ? 'Giriş yapılıyor...' : 'Giriş Yap'}

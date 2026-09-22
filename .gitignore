@@ -26,3 +26,4 @@ data/audit.log
 data/messages.json
 data/rate-limit.json
 data/*.bak
+.neon

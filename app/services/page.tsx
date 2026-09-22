@@ -37,14 +37,14 @@ import { getSiteSettings } from '@/lib/settings-service'
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'Hafriyat ve İş Makinesi Hizmetleri | Sallıhoğulları Hafriyat',
+    absolute: 'Hafriyat ve İş Makinesi Hizmetleri | Z GRUP İNŞAAT',
   },
   description: 'Hafriyat, temel kazısı, dolgu, damperli nakliyat, lowbed, arazöz, beko loder ve ekskavatör hizmetlerini inceleyin.',
   alternates: {
     canonical: getCanonicalUrl('/services'),
   },
   ...buildShareMetadata({
-    title: 'Hafriyat ve İş Makinesi Hizmetleri | Sallıhoğulları Hafriyat',
+    title: 'Hafriyat ve İş Makinesi Hizmetleri | Z GRUP İNŞAAT',
     description: 'Hafriyat, temel kazısı, dolgu, damperli nakliyat, lowbed, arazöz, beko loder ve ekskavatör hizmetlerini inceleyin.',
     pathname: '/services',
   }),

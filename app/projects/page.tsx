@@ -10,15 +10,15 @@ import { getSiteSettings } from '@/lib/settings-service'
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'Projelerimiz | Sallıhoğulları Hafriyat',
+    absolute: 'Projelerimiz | Z GRUP İNŞAAT',
   },
-  description: 'Sallıhoğulları Hafriyat’ın tamamlanan hafriyat, temel kazısı, dolgu, nakliyat ve saha hazırlığı çalışmalarını inceleyin.',
+  description: 'Z GRUP İNŞAAT’ın tamamlanan hafriyat, temel kazısı, dolgu, nakliyat ve saha hazırlığı çalışmalarını inceleyin.',
   alternates: {
     canonical: getCanonicalUrl('/projects'),
   },
   ...buildShareMetadata({
-    title: 'Projelerimiz | Sallıhoğulları Hafriyat',
-    description: 'Sallıhoğulları Hafriyat’ın tamamlanan hafriyat, temel kazısı, dolgu, nakliyat ve saha hazırlığı çalışmalarını inceleyin.',
+    title: 'Projelerimiz | Z GRUP İNŞAAT',
+    description: 'Z GRUP İNŞAAT’ın tamamlanan hafriyat, temel kazısı, dolgu, nakliyat ve saha hazırlığı çalışmalarını inceleyin.',
     pathname: '/projects',
   }),
 }

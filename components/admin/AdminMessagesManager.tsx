@@ -46,7 +46,7 @@ export function AdminMessagesManager({ messages }: { messages: AdminMessage[] })
 
   return (
     <div className="space-y-6">
-      <div className="industrial-border rounded-[28px] bg-white/[0.04] p-5">
+      <div className="industrial-border rounded-[28px] bg-foreground/[0.04] p-5">
         <div className="grid gap-4 xl:grid-cols-[1.2fr_0.8fr_0.7fr_auto]">
           <input
             className="input-premium"
@@ -65,33 +65,33 @@ export function AdminMessagesManager({ messages }: { messages: AdminMessage[] })
             <option value="oldest">En eski</option>
             <option value="name">İsim A-Z</option>
           </select>
-          <div className="rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-sm text-white/55">{filteredMessages.length} kayıt</div>
+          <div className="rounded-2xl border border-foreground/10 bg-background/20 px-4 py-3 text-sm text-foreground/55">{filteredMessages.length} kayıt</div>
         </div>
 
         <div className="mt-4 flex flex-wrap gap-2">
-          <span className="rounded-full border border-white/10 px-3 py-1 text-xs text-white/65">Yeni: {unreadCount}</span>
-          <span className="rounded-full border border-white/10 px-3 py-1 text-xs text-white/65">Toplam: {filteredMessages.length}</span>
+          <span className="rounded-full border border-foreground/10 px-3 py-1 text-xs text-foreground/65">Yeni: {unreadCount}</span>
+          <span className="rounded-full border border-foreground/10 px-3 py-1 text-xs text-foreground/65">Toplam: {filteredMessages.length}</span>
         </div>
       </div>
 
       <div className="space-y-4">
         {filteredMessages.map((message) => (
-          <div key={message.id} className="industrial-border rounded-[28px] bg-white/[0.04] p-4 sm:p-6">
+          <div key={message.id} className="industrial-border rounded-[28px] bg-foreground/[0.04] p-4 sm:p-6">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
               <div className="min-w-0 space-y-3">
                 <div className="flex flex-wrap items-center gap-3">
-                  <h2 className="break-words text-xl font-medium text-white">{message.name}</h2>
-                  <span className="max-w-full break-all rounded-full border border-white/10 px-3 py-1 text-xs text-white/55">#{message.reference}</span>
-                  <span className={`rounded-full px-3 py-1 text-xs ${message.isRead ? 'bg-white/10 text-white/60' : 'bg-amber-400/10 text-amber-300'}`}>
+                  <h2 className="break-words text-xl font-medium text-foreground">{message.name}</h2>
+                  <span className="max-w-full break-all rounded-full border border-foreground/10 px-3 py-1 text-xs text-foreground/55">#{message.reference}</span>
+                  <span className={`rounded-full px-3 py-1 text-xs ${message.isRead ? 'bg-foreground/10 text-foreground/60' : 'bg-primary/10 text-primary'}`}>
                     {message.isRead ? 'Okundu' : 'Yeni Mesaj'}
                   </span>
                 </div>
-                <div className="data-label break-words text-white/45">{message.subject} • {new Date(message.createdAt).toLocaleString('tr-TR')}</div>
-                <div className="grid gap-2 text-sm text-white/60 md:grid-cols-2">
+                <div className="data-label break-words text-foreground/45">{message.subject} • {new Date(message.createdAt).toLocaleString('tr-TR')}</div>
+                <div className="grid gap-2 text-sm text-foreground/60 md:grid-cols-2">
                   <div className="break-all">E-posta: {message.email || '-'}</div>
                   <div className="break-all">Telefon: {message.phone || '-'}</div>
                 </div>
-                <p className="max-w-4xl whitespace-pre-wrap break-words text-white/75">{message.message}</p>
+                <p className="max-w-4xl whitespace-pre-wrap break-words text-foreground/75">{message.message}</p>
               </div>
               <div className="flex flex-wrap gap-3">
                 <ToggleReadButton messageId={message.id} isRead={message.isRead} />
@@ -101,7 +101,7 @@ export function AdminMessagesManager({ messages }: { messages: AdminMessage[] })
           </div>
         ))}
         {filteredMessages.length === 0 ? (
-          <div className="industrial-border rounded-[28px] bg-white/[0.04] p-10 text-center text-white/50">
+          <div className="industrial-border rounded-[28px] bg-foreground/[0.04] p-10 text-center text-foreground/50">
             Arama veya filtre sonucunda gösterilecek mesaj bulunamadı.
           </div>
         ) : null}

@@ -25,7 +25,7 @@ export function DeleteProjectButton({ projectId }: { projectId: string }) {
       description="Projeye bağlı içerikler kaldırılır. Sadece başka bir yerde kullanılmayan yüklenen dosyalar temizlenir."
       confirmLabel="Projeyi Kalıcı Sil"
       onConfirm={handleDelete}
-      className="btn-ghost-premium h-11 px-5 text-red-300"
+      className="btn-ghost-premium h-11 px-5 text-red-700"
     />
   )
 }

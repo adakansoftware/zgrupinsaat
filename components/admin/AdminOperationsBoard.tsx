@@ -44,13 +44,13 @@ export function AdminOperationsBoard({ issues, score }: Props) {
     <div className="admin-surface rounded-[32px] p-6">
       <div className="mb-5 flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
         <div>
-          <h2 className="font-display text-4xl text-white">Sorun Keşif Masası</h2>
-          <div className="mt-2 text-sm text-white/45">Operasyon skoru: {score}/100</div>
+          <h2 className="font-display text-4xl text-foreground">Sorun Keşif Masası</h2>
+          <div className="mt-2 text-sm text-foreground/45">Operasyon skoru: {score}/100</div>
         </div>
 
         <div className="grid gap-3 xl:grid-cols-[1fr_220px_220px]">
           <label className="relative">
-            <Search className="pointer-events-none absolute top-1/2 left-4 h-4 w-4 -translate-y-1/2 text-white/35" />
+            <Search className="pointer-events-none absolute top-1/2 left-4 h-4 w-4 -translate-y-1/2 text-foreground/35" />
             <input
               className="input-premium pl-11"
               placeholder="Sorun başlığı veya detay ara"
@@ -77,25 +77,25 @@ export function AdminOperationsBoard({ issues, score }: Props) {
             <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
               <div className="min-w-0">
                 <div className="flex flex-wrap items-center gap-3">
-                  <div className="text-lg font-medium text-white">{issue.title}</div>
+                  <div className="text-lg font-medium text-foreground">{issue.title}</div>
                   <span
                     className={`rounded-full px-3 py-1 text-xs ${
                       issue.severity === 'high'
-                        ? 'bg-red-400/10 text-red-300'
+                        ? 'bg-red-400/10 text-red-700'
                         : issue.severity === 'medium'
-                          ? 'bg-amber-400/10 text-amber-300'
+                          ? 'bg-primary/10 text-primary'
                           : 'bg-sky-400/10 text-sky-300'
                     }`}
                   >
                     {severityLabels[issue.severity]}
                   </span>
-                  <span className="rounded-full border border-white/10 px-3 py-1 text-xs text-white/60">
+                  <span className="rounded-full border border-foreground/10 px-3 py-1 text-xs text-foreground/60">
                     {domainLabels[issue.domain]}
                   </span>
                 </div>
 
-                <p className="mt-3 max-w-3xl text-sm leading-7 text-white/60">{issue.description}</p>
-                <div className="mt-4 text-sm text-white/45">{issue.stat}</div>
+                <p className="mt-3 max-w-3xl text-sm leading-7 text-foreground/60">{issue.description}</p>
+                <div className="mt-4 text-sm text-foreground/45">{issue.stat}</div>
               </div>
 
               <Link href={issue.href} className="btn-ghost-premium inline-flex h-11 items-center gap-2 px-5">
@@ -107,7 +107,7 @@ export function AdminOperationsBoard({ issues, score }: Props) {
         ))}
 
         {filteredIssues.length === 0 ? (
-          <div className="rounded-[24px] border border-dashed border-white/10 bg-black/20 p-10 text-center text-white/50">
+          <div className="rounded-[24px] border border-dashed border-foreground/10 bg-background/20 p-10 text-center text-foreground/50">
             Bu filtrelerle eşleşen operasyon sorunu görünmüyor.
           </div>
         ) : null}

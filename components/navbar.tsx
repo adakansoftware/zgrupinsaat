@@ -70,8 +70,8 @@ export function Navbar({ settings }: { settings: SiteSettings }) {
             <Link href="/" className="group flex items-center gap-3">
               <div className="relative flex h-12 w-16 shrink-0 items-center justify-center overflow-hidden">
                 <Image
-                  src="/images/salihogullari-logo-small.png"
-                  alt="Sallıhoğulları Hafriyat logo"
+                  src="/images/z-grup-logo-small.png"
+                  alt="Z GRUP İNŞAAT logo"
                   fill
                   sizes="64px"
                   className="object-contain"
@@ -120,7 +120,7 @@ export function Navbar({ settings }: { settings: SiteSettings }) {
                   rel="noopener noreferrer"
                   aria-label="WhatsApp ile iletişime geç"
                   title="WhatsApp ile Yaz"
-                  className="flex h-11 items-center gap-2 rounded-full border border-emerald-400/25 bg-emerald-500/10 px-4 text-sm font-semibold text-emerald-300 transition-colors hover:border-emerald-300/45 hover:bg-emerald-500/18 hover:text-emerald-200"
+                  className="flex h-11 items-center gap-2 rounded-full border border-emerald-400/25 bg-emerald-500/10 px-4 text-sm font-semibold text-emerald-700 transition-colors hover:border-emerald-300/45 hover:bg-emerald-500/18 hover:text-emerald-800"
                 >
                   <MessageCircle className="h-5 w-5" />
                   <span>WhatsApp ile Yaz</span>
@@ -185,7 +185,7 @@ export function Navbar({ settings }: { settings: SiteSettings }) {
               </a>
             ) : null}
             {hasWhatsApp ? (
-              <a href={settings.whatsappUrl} target="_blank" rel="noopener noreferrer" onClick={closeMobileMenu} className="flex items-center gap-3 px-4 py-3 text-emerald-300">
+              <a href={settings.whatsappUrl} target="_blank" rel="noopener noreferrer" onClick={closeMobileMenu} className="flex items-center gap-3 px-4 py-3 text-emerald-700">
                 <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/12">
                   <MessageCircle className="h-4 w-4" />
                 </span>

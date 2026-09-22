@@ -24,7 +24,7 @@ export function DeleteMessageButton({ messageId }: { messageId: string }) {
       description="Mesaj geçmişten kaldırılır. Bu işlem geri alınamaz."
       confirmLabel="Mesajı Sil"
       onConfirm={handleDelete}
-      className="rounded-full border border-red-400/20 px-3 py-1 text-sm text-red-300 transition hover:border-red-300/30 hover:text-red-200"
+      className="rounded-full border border-red-400/20 px-3 py-1 text-sm text-red-700 transition hover:border-red-300/30 hover:text-red-800"
     />
   )
 }

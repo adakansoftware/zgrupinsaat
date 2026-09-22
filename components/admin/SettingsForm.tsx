@@ -26,8 +26,8 @@ type Props = {
 function SectionHeader({ title, description }: { title: string; description: string }) {
   return (
     <div className="mb-4">
-      <div className="text-sm font-semibold text-white">{title}</div>
-      <div className="mt-1 text-xs leading-6 text-white/45">{description}</div>
+      <div className="text-sm font-semibold text-foreground">{title}</div>
+      <div className="mt-1 text-xs leading-6 text-foreground/45">{description}</div>
     </div>
   )
 }
@@ -72,7 +72,7 @@ export function SettingsForm({ initialValues }: Props) {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid gap-5 xl:grid-cols-2">
-        <div className="rounded-[28px] border border-white/10 bg-black/20 p-5">
+        <div className="rounded-[28px] border border-foreground/10 bg-background/20 p-5">
           <SectionHeader title="Marka Kimliği" description="Firma adı ve kısa marka bilgisini düzenleyin." />
           <div className="grid gap-4">
             <input className="input-premium w-full" value={form.companyName} onChange={(e) => update('companyName', e.target.value)} placeholder="Firma adı" />
@@ -81,7 +81,7 @@ export function SettingsForm({ initialValues }: Props) {
           </div>
         </div>
 
-        <div className="rounded-[28px] border border-white/10 bg-black/20 p-5">
+        <div className="rounded-[28px] border border-foreground/10 bg-background/20 p-5">
           <SectionHeader title="İletişim Kanalları" description="Telefon ve e-posta bilgilerini güncelleyin." />
           <div className="grid gap-4">
             <input className="input-premium w-full" value={form.contactPhone} onChange={(e) => update('contactPhone', e.target.value)} placeholder="Birincil telefon" />
@@ -92,7 +92,7 @@ export function SettingsForm({ initialValues }: Props) {
         </div>
       </div>
 
-      <div className="rounded-[28px] border border-white/10 bg-black/20 p-5">
+      <div className="rounded-[28px] border border-foreground/10 bg-background/20 p-5">
         <SectionHeader title="Operasyon ve Lokasyon" description="Adres, hizmet bölgesi ve çalışma saatlerini düzenleyin." />
         <div className="grid gap-4 md:grid-cols-3">
           <input className="input-premium w-full md:col-span-3" value={form.address} onChange={(e) => update('address', e.target.value)} placeholder="Adres" />
@@ -103,7 +103,7 @@ export function SettingsForm({ initialValues }: Props) {
         </div>
       </div>
 
-      <div className="rounded-[28px] border border-white/10 bg-black/20 p-5">
+      <div className="rounded-[28px] border border-foreground/10 bg-background/20 p-5">
         <SectionHeader title="Hero ve Teklif Metinleri" description="Ana sayfa ve teklif alanında görünen metinleri düzenleyin." />
         <div className="grid gap-4">
           <textarea className="textarea-premium w-full" value={form.heroTitle} onChange={(e) => update('heroTitle', e.target.value)} placeholder="Hero başlığı" />
@@ -112,8 +112,8 @@ export function SettingsForm({ initialValues }: Props) {
         </div>
       </div>
 
-      {error ? <p className="rounded-2xl border border-red-400/15 bg-red-400/8 px-4 py-3 text-sm text-red-300">{error}</p> : null}
-      {message ? <p className="rounded-2xl border border-emerald-400/15 bg-emerald-400/8 px-4 py-3 text-sm text-emerald-300">{message}</p> : null}
+      {error ? <p className="rounded-2xl border border-red-400/15 bg-red-400/8 px-4 py-3 text-sm text-red-700">{error}</p> : null}
+      {message ? <p className="rounded-2xl border border-emerald-400/15 bg-emerald-400/8 px-4 py-3 text-sm text-emerald-700">{message}</p> : null}
 
       <div className="flex flex-wrap items-center gap-3">
         <button type="submit" disabled={loading} className="btn-premium h-12 px-6">

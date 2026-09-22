@@ -47,7 +47,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
               <div className="deep-shadow relative h-full min-h-[680px] sm:min-h-[550px] lg:min-h-full">
                 <Image
                   src={featuredProject.cardImage || featuredProject.coverImage || '/images/project-1.jpg'}
-                  alt={`${featuredProject.title} - Sallıhoğulları Hafriyat hafriyat çalışması`}
+                  alt={`${featuredProject.title} - Z GRUP İNŞAAT hafriyat çalışması`}
                   fill
                   className="object-cover transition-transform duration-1000 group-hover:scale-105"
                   sizes="(min-width: 1024px) 60vw, 100vw"
@@ -93,7 +93,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                     <div className="relative h-48 w-full shrink-0 overflow-hidden sm:h-auto sm:w-44 lg:w-48">
                       <Image
                         src={project.cardImage || project.coverImage || '/images/project-2.jpg'}
-                        alt={`${project.title} - Sallıhoğulları Hafriyat saha çalışması`}
+                        alt={`${project.title} - Z GRUP İNŞAAT saha çalışması`}
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
                         sizes="(min-width: 1024px) 192px, (min-width: 640px) 176px, 100vw"
@@ -130,7 +130,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
             </div>
           </div>
         ) : (
-          <div className="rounded-[32px] border border-white/10 bg-white/[0.03] px-8 py-12 text-center text-white/58">
+          <div className="rounded-[32px] border border-foreground/10 bg-foreground/[0.03] px-8 py-12 text-center text-foreground/58">
             Henüz yayında proje kaydı bulunmuyor.
           </div>
         )}

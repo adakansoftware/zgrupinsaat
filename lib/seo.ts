@@ -3,20 +3,12 @@ import type { SiteSettings } from '@/lib/store'
 import { env } from '@/lib/env'
 
 export const DEFAULT_SHARE_IMAGE = '/images/hero-main.jpg'
-const SEO_BRAND = 'Sallıhoğulları Hafriyat'
+const SEO_BRAND = 'Z GRUP İNŞAAT'
 const SEO_LOCALITY = 'Adana'
 const DEFAULT_DESCRIPTION =
-  'Sallıhoğulları Hafriyat; hafriyat, temel kazısı, dolgu, damperli nakliyat, lowbed taşımacılık, arazöz, beko loder, ekskavatör ve iş makinesi hizmetleri sunar.'
+  'Z GRUP İNŞAAT; hafriyat, temel kazısı, dolgu, damperli nakliyat, lowbed taşımacılık, arazöz, beko loder, ekskavatör ve iş makinesi hizmetleri sunar.'
 
-const BRAND_ALIASES = [
-  'Sallıhoğulları Hafriyat',
-  'Sallihogullari Hafriyat',
-  'Sallihogullari',
-  'Salihoğulları Hafriyat',
-  'Salihoğulları',
-  'Salihogullari Hafriyat',
-  'Salihogullari',
-]
+const BRAND_ALIASES = ['Z GRUP İNŞAAT', 'Z Grup Insaat', 'Z GRUP']
 
 const SEO_SERVICES = [
   'Hafriyat Hizmeti',
@@ -291,7 +283,7 @@ export function buildOrganizationJsonLd(settings: SiteSettings) {
     identifier: SEO_BRAND,
     keywords: SEO_KEYWORDS,
     alternateName: Array.from(new Set([settings.companyShortName, settings.companyName, ...BRAND_ALIASES])),
-    logo: getCanonicalUrl('/images/salihogullari-logo-small.png'),
+    logo: getCanonicalUrl('/images/z-grup-logo-small.png'),
     image: getCanonicalUrl(DEFAULT_SHARE_IMAGE),
     telephone: settings.contactPhone,
     email: settings.contactEmail,

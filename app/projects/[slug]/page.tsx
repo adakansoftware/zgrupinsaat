@@ -38,7 +38,7 @@ export async function generateMetadata({
 
   return {
     title: {
-      absolute: `${project.title} | Sallıhoğulları Hafriyat`,
+      absolute: `${project.title} | Z GRUP İNŞAAT`,
     },
     description,
     alternates: {
@@ -76,7 +76,7 @@ export default async function ProjectDetailPage({
     <SiteFrame settings={settings}>
       <section className="relative overflow-hidden pt-36 pb-18 lg:pt-44">
         <div className="absolute inset-0">
-          <Image src={project.coverImage || '/images/project-1.jpg'} alt={`${project.title} - Sallıhoğulları Hafriyat proje görseli`} fill className="object-cover" priority quality={95} />
+          <Image src={project.coverImage || '/images/project-1.jpg'} alt={`${project.title} - Z GRUP İNŞAAT proje görseli`} fill className="object-cover" priority quality={95} />
           <div className="absolute inset-0 bg-gradient-to-r from-background via-background/88 to-background/48" />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/45 to-background/75" />
           <div className="absolute inset-0 bg-gradient-to-br from-primary/12 via-transparent to-transparent" />
@@ -118,18 +118,18 @@ export default async function ProjectDetailPage({
             </div>
 
             <div className="glass-card p-7 lg:p-8">
-              <div className="data-label text-white/45">İş Özeti</div>
+              <div className="data-label text-foreground/45">İş Özeti</div>
               <div className="mt-5 grid grid-cols-2 gap-4">
-                <div className="rounded-[24px] border border-white/10 bg-white/[0.03] p-4">
-                  <div className="stat-value text-3xl text-white">{Math.max(gallery.length, 1)}</div>
-                  <div className="mt-2 text-xs uppercase tracking-[0.18em] text-white/48">Saha Karesi</div>
+                <div className="rounded-[24px] border border-foreground/10 bg-foreground/[0.03] p-4">
+                  <div className="stat-value text-3xl text-foreground">{Math.max(gallery.length, 1)}</div>
+                  <div className="mt-2 text-xs uppercase tracking-[0.18em] text-foreground/48">Saha Karesi</div>
                 </div>
-                <div className="rounded-[24px] border border-white/10 bg-white/[0.03] p-4">
-                  <div className="stat-value text-3xl text-white">{scopes.length}</div>
-                  <div className="mt-2 text-xs uppercase tracking-[0.18em] text-white/48">Kapsam Başlığı</div>
+                <div className="rounded-[24px] border border-foreground/10 bg-foreground/[0.03] p-4">
+                  <div className="stat-value text-3xl text-foreground">{scopes.length}</div>
+                  <div className="mt-2 text-xs uppercase tracking-[0.18em] text-foreground/48">Kapsam Başlığı</div>
                 </div>
               </div>
-              <p className="mt-5 text-sm leading-7 text-white/58">
+              <p className="mt-5 text-sm leading-7 text-foreground/58">
                 Saha görselleri, iş kapsamı ve uygulama notları birlikte sunulur.
               </p>
             </div>
@@ -146,15 +146,15 @@ export default async function ProjectDetailPage({
                 {featureMedia.resourceType === 'video' ? (
                   <YouTubeVideo url={featureMedia.fileUrl} title={featureMedia.title || project.title} className="h-full w-full" />
                 ) : (
-                  <Image src={featureMedia.fileUrl} alt={`${featureMedia.title || project.title} - Sallıhoğulları Hafriyat saha görseli`} fill className="object-cover" quality={95} />
+                  <Image src={featureMedia.fileUrl} alt={`${featureMedia.title || project.title} - Z GRUP İNŞAAT saha görseli`} fill className="object-cover" quality={95} />
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
                 <div className="absolute right-6 bottom-6 left-6 flex items-end justify-between gap-4">
                   <div>
                     <div className="section-eyebrow mb-3">Ana Görünüm</div>
-                    <div className="break-words text-2xl font-black text-white lg:text-3xl">{featureMedia.title || project.title}</div>
+                    <div className="break-words text-2xl font-black text-foreground lg:text-3xl">{featureMedia.title || project.title}</div>
                   </div>
-                  <div className="hidden h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-background/50 text-white backdrop-blur sm:flex">
+                  <div className="hidden h-12 w-12 items-center justify-center rounded-full border border-foreground/15 bg-background/50 text-foreground backdrop-blur sm:flex">
                     <ArrowUpRight className="h-5 w-5 text-primary" />
                   </div>
                 </div>
@@ -172,9 +172,9 @@ export default async function ProjectDetailPage({
                 <div className="section-eyebrow mb-5">Çalışma Kapsamı</div>
                 <div className="grid gap-3">
                   {scopes.map((scope) => (
-                    <div key={scope} className="flex items-start gap-3 rounded-[22px] border border-white/8 bg-white/[0.03] px-4 py-4">
+                    <div key={scope} className="flex items-start gap-3 rounded-[22px] border border-foreground/8 bg-foreground/[0.03] px-4 py-4">
                       <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                      <div className="text-sm leading-7 text-white/76">{scope}</div>
+                      <div className="text-sm leading-7 text-foreground/76">{scope}</div>
                     </div>
                   ))}
                 </div>
@@ -197,7 +197,7 @@ export default async function ProjectDetailPage({
             {supportingMedia.map((media, index) => (
               <div
                 key={media.id}
-                className={`group overflow-hidden rounded-[30px] border border-white/10 bg-card/85 ${
+                className={`group overflow-hidden rounded-[30px] border border-foreground/10 bg-card/85 ${
                   index === 0 ? 'lg:col-span-7' : index === 1 ? 'lg:col-span-5' : 'lg:col-span-6'
                 }`}
               >
@@ -205,13 +205,13 @@ export default async function ProjectDetailPage({
                   {media.resourceType === 'video' ? (
                     <YouTubeVideo url={media.fileUrl} title={media.title || project.title} className="h-full w-full" />
                   ) : (
-                    <Image src={media.fileUrl} alt={`${media.title || project.title} - Sallıhoğulları Hafriyat saha çalışması`} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                    <Image src={media.fileUrl} alt={`${media.title || project.title} - Z GRUP İNŞAAT saha çalışması`} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-background/78 via-transparent to-transparent" />
                 </div>
                 <div className="p-5 lg:p-6">
-                  <div className="break-words text-lg font-semibold text-white">{media.title || `${project.title} detay karesi`}</div>
-                  <div className="mt-2 text-sm leading-7 text-white/55">{media.resourceType === 'video' ? 'Saha videosu' : 'Çalışma alanı görseli'}</div>
+                  <div className="break-words text-lg font-semibold text-foreground">{media.title || `${project.title} detay karesi`}</div>
+                  <div className="mt-2 text-sm leading-7 text-foreground/55">{media.resourceType === 'video' ? 'Saha videosu' : 'Çalışma alanı görseli'}</div>
                 </div>
               </div>
             ))}
@@ -233,9 +233,9 @@ export default async function ProjectDetailPage({
                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-primary/20 bg-primary/10">
                   <Layers3 className="h-5 w-5 text-primary" />
                 </div>
-                <div className="data-label text-white/45">{highlight.label}</div>
-                <div className="mt-3 text-2xl font-black text-white">{highlight.value}</div>
-                <p className="mt-4 text-sm leading-7 text-white/58">{highlight.note}</p>
+                <div className="data-label text-foreground/45">{highlight.label}</div>
+                <div className="mt-3 text-2xl font-black text-foreground">{highlight.value}</div>
+                <p className="mt-4 text-sm leading-7 text-foreground/58">{highlight.note}</p>
               </div>
             ))}
           </div>
@@ -243,7 +243,7 @@ export default async function ProjectDetailPage({
           {project.tags.length ? (
             <div className="mt-10 flex flex-wrap gap-2">
               {project.tags.map((tag) => (
-                <span key={tag} className="max-w-full break-words rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-white/70">
+                <span key={tag} className="max-w-full break-words rounded-full border border-foreground/10 bg-foreground/[0.03] px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-foreground/70">
                   {tag}
                 </span>
               ))}

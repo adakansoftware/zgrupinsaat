@@ -36,15 +36,15 @@ import { getSiteSettings } from '@/lib/settings-service'
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'Hakkımızda | Sallıhoğulları Hafriyat',
+    absolute: 'Hakkımızda | Z GRUP İNŞAAT',
   },
-  description: 'Sallıhoğulları Hafriyat’ın hafriyat, temel kazısı, dolgu, nakliyat ve iş makinesi hizmetlerindeki saha tecrübesini inceleyin.',
+  description: 'Z GRUP İNŞAAT’ın hafriyat, temel kazısı, dolgu, nakliyat ve iş makinesi hizmetlerindeki saha tecrübesini inceleyin.',
   alternates: {
     canonical: getCanonicalUrl('/about'),
   },
   ...buildShareMetadata({
-    title: 'Hakkımızda | Sallıhoğulları Hafriyat',
-    description: 'Sallıhoğulları Hafriyat’ın hafriyat, temel kazısı, dolgu, nakliyat ve iş makinesi hizmetlerindeki saha tecrübesini inceleyin.',
+    title: 'Hakkımızda | Z GRUP İNŞAAT',
+    description: 'Z GRUP İNŞAAT’ın hafriyat, temel kazısı, dolgu, nakliyat ve iş makinesi hizmetlerindeki saha tecrübesini inceleyin.',
     pathname: '/about',
   }),
 }

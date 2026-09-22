@@ -230,24 +230,24 @@ export function FleetManager({ initialContent }: Props) {
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid gap-4 md:grid-cols-3">
         <div className="admin-kpi rounded-[24px] p-5">
-          <div className="data-label text-white/45">Kategori</div>
-          <div className="mt-3 text-4xl text-white">{summary.itemCount}</div>
+          <div className="data-label text-foreground/45">Kategori</div>
+          <div className="mt-3 text-4xl text-foreground">{summary.itemCount}</div>
         </div>
         <div className="admin-kpi rounded-[24px] p-5">
-          <div className="data-label text-white/45">Model Kartı</div>
-          <div className="mt-3 text-4xl text-white">{summary.modelCount}</div>
+          <div className="data-label text-foreground/45">Model Kartı</div>
+          <div className="mt-3 text-4xl text-foreground">{summary.modelCount}</div>
         </div>
         <div className="admin-kpi rounded-[24px] p-5">
-          <div className="data-label text-white/45">Toplam Adet</div>
-          <div className="mt-3 text-4xl text-white">{summary.totalUnits}</div>
+          <div className="data-label text-foreground/45">Toplam Adet</div>
+          <div className="mt-3 text-4xl text-foreground">{summary.totalUnits}</div>
         </div>
       </div>
 
-      <div className="rounded-[28px] border border-white/10 bg-black/20 p-5">
+      <div className="rounded-[28px] border border-foreground/10 bg-background/20 p-5">
         <div className="mb-4 flex items-center justify-between">
           <div>
-            <div className="text-sm font-semibold text-white">Üst İstatistikler</div>
-            <div className="mt-1 text-xs text-white/45">Filomuz sayfasındaki özet kutularını yönetin.</div>
+            <div className="text-sm font-semibold text-foreground">Üst İstatistikler</div>
+            <div className="mt-1 text-xs text-foreground/45">Filomuz sayfasındaki özet kutularını yönetin.</div>
           </div>
           <button type="button" onClick={addStat} className="btn-ghost-premium inline-flex h-11 items-center gap-2 px-4">
             <Plus className="h-4 w-4" />
@@ -256,10 +256,10 @@ export function FleetManager({ initialContent }: Props) {
         </div>
         <div className="grid gap-4 md:grid-cols-2">
           {content.stats.map((stat, index) => (
-            <div key={`${stat.label}-${index}`} className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+            <div key={`${stat.label}-${index}`} className="rounded-2xl border border-foreground/10 bg-foreground/[0.03] p-4">
               <div className="mb-3 flex items-center justify-between">
-                <div className="text-sm text-white/75">İstatistik {index + 1}</div>
-                <button type="button" onClick={() => removeStat(index)} className="text-white/45 transition hover:text-red-300">
+                <div className="text-sm text-foreground/75">İstatistik {index + 1}</div>
+                <button type="button" onClick={() => removeStat(index)} className="text-foreground/45 transition hover:text-red-700">
                   <Trash2 className="h-4 w-4" />
                 </button>
               </div>
@@ -275,8 +275,8 @@ export function FleetManager({ initialContent }: Props) {
       <div className="space-y-5">
         <div className="flex items-center justify-between gap-3">
           <div>
-            <div className="text-sm font-semibold text-white">Filo Kategorileri</div>
-            <div className="mt-1 text-xs text-white/45">Kart sayısı model sayısına göre otomatik eşitlenir.</div>
+            <div className="text-sm font-semibold text-foreground">Filo Kategorileri</div>
+            <div className="mt-1 text-xs text-foreground/45">Kart sayısı model sayısına göre otomatik eşitlenir.</div>
           </div>
           <button type="button" onClick={addItem} className="btn-premium inline-flex h-11 items-center gap-2 px-5">
             <Plus className="h-4 w-4" />
@@ -285,13 +285,13 @@ export function FleetManager({ initialContent }: Props) {
         </div>
 
         {content.items.map((item, itemIndex) => (
-          <section key={`${item.slug}-${itemIndex}`} className="rounded-[28px] border border-white/10 bg-black/20 p-5">
+          <section key={`${item.slug}-${itemIndex}`} className="rounded-[28px] border border-foreground/10 bg-background/20 p-5">
             <div className="mb-5 flex items-center justify-between gap-4">
               <div>
-                <div className="text-lg font-semibold text-white">{item.name || `Kategori ${itemIndex + 1}`}</div>
-                <div className="mt-1 text-xs text-white/45">Slug: /fleet/{item.slug || createSlug(item.name) || 'kategori'}</div>
+                <div className="text-lg font-semibold text-foreground">{item.name || `Kategori ${itemIndex + 1}`}</div>
+                <div className="mt-1 text-xs text-foreground/45">Slug: /fleet/{item.slug || createSlug(item.name) || 'kategori'}</div>
               </div>
-              <button type="button" onClick={() => removeItem(itemIndex)} className="inline-flex h-10 items-center gap-2 rounded-2xl border border-red-400/15 bg-red-400/8 px-4 text-sm text-red-300">
+              <button type="button" onClick={() => removeItem(itemIndex)} className="inline-flex h-10 items-center gap-2 rounded-2xl border border-red-400/15 bg-red-400/8 px-4 text-sm text-red-700">
                 <Trash2 className="h-4 w-4" />
                 Kategoriyi Sil
               </button>
@@ -308,16 +308,16 @@ export function FleetManager({ initialContent }: Props) {
               <textarea className="textarea-premium xl:col-span-2" value={item.detailDescription} onChange={(event) => updateItem(itemIndex, 'detailDescription', event.target.value)} placeholder="Detay açıklaması" />
             </div>
 
-            <div className="mt-5 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+            <div className="mt-5 rounded-2xl border border-foreground/10 bg-foreground/[0.03] p-4">
               <div className="mb-4 flex items-center justify-between">
-                <div className="text-sm font-semibold text-white">Etiketler</div>
-                <button type="button" onClick={() => addSpec(itemIndex)} className="text-sm text-amber-300 transition hover:text-amber-200">Etiket Ekle</button>
+                <div className="text-sm font-semibold text-foreground">Etiketler</div>
+                <button type="button" onClick={() => addSpec(itemIndex)} className="text-sm text-primary transition hover:text-primary">Etiket Ekle</button>
               </div>
               <div className="grid gap-3 md:grid-cols-2">
                 {item.specs.map((spec, specIndex) => (
                   <div key={`${item.slug}-spec-${specIndex}`} className="flex items-center gap-2">
                     <input className="input-premium" value={spec} onChange={(event) => updateSpec(itemIndex, specIndex, event.target.value)} placeholder="Etiket / marka" />
-                    <button type="button" onClick={() => removeSpec(itemIndex, specIndex)} className="rounded-2xl border border-white/10 px-3 py-3 text-white/45 transition hover:text-red-300">
+                    <button type="button" onClick={() => removeSpec(itemIndex, specIndex)} className="rounded-2xl border border-foreground/10 px-3 py-3 text-foreground/45 transition hover:text-red-700">
                       <Trash2 className="h-4 w-4" />
                     </button>
                   </div>
@@ -325,11 +325,11 @@ export function FleetManager({ initialContent }: Props) {
               </div>
             </div>
 
-            <div className="mt-5 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+            <div className="mt-5 rounded-2xl border border-foreground/10 bg-foreground/[0.03] p-4">
               <div className="mb-4 flex items-center justify-between">
                 <div>
-                  <div className="text-sm font-semibold text-white">Alt Model Kartları</div>
-                  <div className="mt-1 text-xs text-white/45">Mevcut kart sayısı: {item.models.length}</div>
+                  <div className="text-sm font-semibold text-foreground">Alt Model Kartları</div>
+                  <div className="mt-1 text-xs text-foreground/45">Mevcut kart sayısı: {item.models.length}</div>
                 </div>
                 <button type="button" onClick={() => addModel(itemIndex)} className="btn-ghost-premium inline-flex h-10 items-center gap-2 px-4">
                   <Plus className="h-4 w-4" />
@@ -339,10 +339,10 @@ export function FleetManager({ initialContent }: Props) {
 
               <div className="space-y-4">
                 {item.models.map((model, modelIndex) => (
-                  <div key={`${item.slug}-model-${modelIndex}`} className="rounded-2xl border border-white/10 bg-black/20 p-4">
+                  <div key={`${item.slug}-model-${modelIndex}`} className="rounded-2xl border border-foreground/10 bg-background/20 p-4">
                     <div className="mb-4 flex items-center justify-between">
-                      <div className="text-sm text-white/75">Model {modelIndex + 1}</div>
-                      <button type="button" onClick={() => removeModel(itemIndex, modelIndex)} className="text-white/45 transition hover:text-red-300">
+                      <div className="text-sm text-foreground/75">Model {modelIndex + 1}</div>
+                      <button type="button" onClick={() => removeModel(itemIndex, modelIndex)} className="text-foreground/45 transition hover:text-red-700">
                         <Trash2 className="h-4 w-4" />
                       </button>
                     </div>
@@ -361,8 +361,8 @@ export function FleetManager({ initialContent }: Props) {
         ))}
       </div>
 
-      {error ? <p className="rounded-2xl border border-red-400/15 bg-red-400/8 px-4 py-3 text-sm text-red-300">{error}</p> : null}
-      {message ? <p className="rounded-2xl border border-emerald-400/15 bg-emerald-400/8 px-4 py-3 text-sm text-emerald-300">{message}</p> : null}
+      {error ? <p className="rounded-2xl border border-red-400/15 bg-red-400/8 px-4 py-3 text-sm text-red-700">{error}</p> : null}
+      {message ? <p className="rounded-2xl border border-emerald-400/15 bg-emerald-400/8 px-4 py-3 text-sm text-emerald-700">{message}</p> : null}
 
       <div className="flex flex-wrap items-center gap-3">
         <button type="submit" disabled={loading} className="btn-premium h-12 px-6">

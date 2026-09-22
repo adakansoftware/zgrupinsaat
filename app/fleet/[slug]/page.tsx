@@ -30,14 +30,14 @@ export async function generateMetadata({ params }: FleetDetailPageProps): Promis
 
   return {
     title: {
-      absolute: `${item.name} | Sallıhoğulları Hafriyat`,
+      absolute: `${item.name} | Z GRUP İNŞAAT`,
     },
     description: item.description,
     alternates: {
       canonical: getCanonicalUrl(getFleetHref(item.slug)),
     },
     ...buildShareMetadata({
-      title: `${item.name} | Sallıhoğulları Hafriyat`,
+      title: `${item.name} | Z GRUP İNŞAAT`,
       description: item.description,
       pathname: getFleetHref(item.slug),
     }),

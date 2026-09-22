@@ -28,14 +28,14 @@ export async function generateMetadata({ params }: ServiceDetailPageProps): Prom
 
   return {
     title: {
-      absolute: `${service.title} | Sallıhoğulları Hafriyat`,
+      absolute: `${service.title} | Z GRUP İNŞAAT`,
     },
     description: service.metaDescription,
     alternates: {
       canonical: getCanonicalUrl(getServiceHref(service.slug)),
     },
     ...buildShareMetadata({
-      title: `${service.title} | Sallıhoğulları Hafriyat`,
+      title: `${service.title} | Z GRUP İNŞAAT`,
       description: service.metaDescription,
       pathname: getServiceHref(service.slug),
     }),

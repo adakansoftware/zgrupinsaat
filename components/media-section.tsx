@@ -23,7 +23,7 @@ export function MediaSection() {
           {mediaGalleryItems.map((item) => (
             <div key={item.title} className={`group relative cursor-pointer overflow-hidden ${item.tall ? 'row-span-2' : ''}`}>
               <div className={`relative w-full ${item.tall ? 'h-full min-h-[400px] lg:min-h-[500px]' : 'h-48 lg:h-64'}`}>
-                <Image src={item.image} alt={`${item.title} - Sallıhoğulları Hafriyat saha çalışması`} fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
+                <Image src={item.image} alt={`${item.title} - Z GRUP İNŞAAT saha çalışması`} fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-90" />
 
                 <div className="absolute right-0 bottom-0 left-0 translate-y-2 p-5 transition-transform duration-300 group-hover:translate-y-0">

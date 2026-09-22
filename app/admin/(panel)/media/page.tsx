@@ -11,28 +11,28 @@ export default async function AdminMediaPage() {
     <div className="space-y-8">
       <div>
         <div className="section-eyebrow mb-4">Medya Yönetimi</div>
-        <h1 className="font-display text-4xl text-white sm:text-5xl md:text-6xl">Medya Merkezi</h1>
-        <p className="mt-3 max-w-3xl text-white/60">
+        <h1 className="font-display text-4xl text-foreground sm:text-5xl md:text-6xl">Medya Merkezi</h1>
+        <p className="mt-3 max-w-3xl text-foreground/60">
           Tüm proje görsellerini ve video linklerini tek yerden filtreleyin, kırık kayıtları görün ve ilgili projeye hızla geçin.
         </p>
       </div>
 
       <div className="grid gap-4 md:grid-cols-4">
         <div className="admin-kpi rounded-[24px] p-5">
-          <div className="data-label text-white/40">Toplam Medya</div>
-          <div className="mt-3 text-4xl font-black text-white">{entries.length}</div>
+          <div className="data-label text-foreground/40">Toplam Medya</div>
+          <div className="mt-3 text-4xl font-black text-foreground">{entries.length}</div>
         </div>
         <div className="admin-kpi rounded-[24px] p-5">
-          <div className="data-label text-white/40">Görsel</div>
-          <div className="mt-3 text-4xl font-black text-white">{imageCount}</div>
+          <div className="data-label text-foreground/40">Görsel</div>
+          <div className="mt-3 text-4xl font-black text-foreground">{imageCount}</div>
         </div>
         <div className="admin-kpi rounded-[24px] p-5">
-          <div className="data-label text-white/40">Video</div>
-          <div className="mt-3 text-4xl font-black text-white">{videoCount}</div>
+          <div className="data-label text-foreground/40">Video</div>
+          <div className="mt-3 text-4xl font-black text-foreground">{videoCount}</div>
         </div>
         <div className="admin-kpi rounded-[24px] p-5">
-          <div className="data-label text-white/40">Kırık</div>
-          <div className="mt-3 text-4xl font-black text-white">{brokenCount}</div>
+          <div className="data-label text-foreground/40">Kırık</div>
+          <div className="mt-3 text-4xl font-black text-foreground">{brokenCount}</div>
         </div>
       </div>
 

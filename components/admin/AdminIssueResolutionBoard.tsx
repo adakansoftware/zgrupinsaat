@@ -41,14 +41,14 @@ const statusLabels: Record<IssueStatus, string> = {
 }
 
 const statusClasses: Record<IssueStatus, string> = {
-  open: 'border-red-400/20 bg-red-400/8 text-red-200',
-  monitoring: 'border-amber-400/20 bg-amber-400/8 text-amber-200',
-  resolved: 'border-emerald-400/20 bg-emerald-400/8 text-emerald-200',
+  open: 'border-red-400/20 bg-red-400/8 text-red-800',
+  monitoring: 'border-primary/20 bg-primary/8 text-primary',
+  resolved: 'border-emerald-400/20 bg-emerald-400/8 text-emerald-800',
 }
 
 const severityClasses: Record<InsightSeverity, string> = {
-  high: 'bg-red-400/10 text-red-300',
-  medium: 'bg-amber-400/10 text-amber-300',
+  high: 'bg-red-400/10 text-red-700',
+  medium: 'bg-primary/10 text-primary',
   low: 'bg-sky-400/10 text-sky-300',
 }
 
@@ -108,8 +108,8 @@ export function AdminIssueResolutionBoard({ title, description, issues }: Props)
   return (
     <section className="admin-surface rounded-[32px] p-6">
       <div className="mb-5">
-        <h2 className="font-display text-4xl text-white">{title}</h2>
-        <p className="mt-3 max-w-3xl text-sm leading-7 text-white/60">{description}</p>
+        <h2 className="font-display text-4xl text-foreground">{title}</h2>
+        <p className="mt-3 max-w-3xl text-sm leading-7 text-foreground/60">{description}</p>
       </div>
 
       <div className="space-y-4">
@@ -122,7 +122,7 @@ export function AdminIssueResolutionBoard({ title, description, issues }: Props)
               <div className="flex flex-col gap-5 xl:flex-row xl:items-start xl:justify-between">
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-3">
-                    <div className="text-lg font-medium text-white">{issue.title}</div>
+                    <div className="text-lg font-medium text-foreground">{issue.title}</div>
                     <span className={`rounded-full px-3 py-1 text-xs ${severityClasses[issue.severity]}`}>
                       {severityLabels[issue.severity]}
                     </span>
@@ -130,15 +130,15 @@ export function AdminIssueResolutionBoard({ title, description, issues }: Props)
                       {statusLabels[draft.status]}
                     </span>
                     {issue.domainLabel ? (
-                      <span className="rounded-full border border-white/10 px-3 py-1 text-xs text-white/60">{issue.domainLabel}</span>
+                      <span className="rounded-full border border-foreground/10 px-3 py-1 text-xs text-foreground/60">{issue.domainLabel}</span>
                     ) : null}
                   </div>
 
-                  <p className="mt-3 max-w-3xl text-sm leading-7 text-white/60">{issue.description}</p>
-                  <div className="mt-4 flex flex-wrap items-center gap-4 text-sm text-white/45">
+                  <p className="mt-3 max-w-3xl text-sm leading-7 text-foreground/60">{issue.description}</p>
+                  <div className="mt-4 flex flex-wrap items-center gap-4 text-sm text-foreground/45">
                     <span>{issue.stat}</span>
                     <span className="inline-flex items-center gap-2">
-                      <Clock3 className="h-4 w-4 text-white/30" />
+                      <Clock3 className="h-4 w-4 text-foreground/30" />
                       {formatDate(issue.updatedAt)}
                     </span>
                   </div>
@@ -185,7 +185,7 @@ export function AdminIssueResolutionBoard({ title, description, issues }: Props)
         })}
 
         {issues.length === 0 ? (
-          <div className="rounded-[24px] border border-emerald-400/15 bg-emerald-400/8 p-10 text-center text-emerald-200">
+          <div className="rounded-[24px] border border-emerald-400/15 bg-emerald-400/8 p-10 text-center text-emerald-800">
             Şu an takip gerektiren açık issue görünmüyor.
           </div>
         ) : null}

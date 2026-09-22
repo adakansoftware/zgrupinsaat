@@ -25,8 +25,8 @@ type Props = {
 function FieldLabel({ title, description }: { title: string; description: string }) {
   return (
     <div className="mb-3">
-      <div className="text-sm font-semibold text-white">{title}</div>
-      <div className="mt-1 text-xs leading-6 text-white/45">{description}</div>
+      <div className="text-sm font-semibold text-foreground">{title}</div>
+      <div className="mt-1 text-xs leading-6 text-foreground/45">{description}</div>
     </div>
   )
 }
@@ -135,7 +135,7 @@ export function ProjectForm({ mode = 'create', project }: Props) {
   return (
     <form onSubmit={handleSubmit} aria-busy={loading} className="space-y-6">
       <div className="grid gap-5 xl:grid-cols-[1.08fr_0.92fr]">
-        <div className="rounded-[28px] border border-white/10 bg-black/20 p-5">
+        <div className="rounded-[28px] border border-foreground/10 bg-background/20 p-5">
           <FieldLabel title="Temel Bilgiler" description="Başlık, kategori, lokasyon ve kapak yolunu düzenleyin." />
           <div className="grid gap-4 md:grid-cols-2">
             <input className="input-premium w-full" placeholder="Proje başlığı" value={title} onChange={(e) => setTitle(e.target.value)} required />
@@ -148,16 +148,16 @@ export function ProjectForm({ mode = 'create', project }: Props) {
           <div className="mt-4">
             <input className="input-premium w-full" placeholder="Kapak görseli yolu: /images/..." value={coverImage} onChange={(e) => setCoverImage(e.target.value)} />
           </div>
-          <div className="mt-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-white/55">
+          <div className="mt-3 rounded-2xl border border-foreground/10 bg-foreground/[0.03] px-4 py-3 text-sm text-foreground/55">
             Not: Kapak görsellerini /images altındaki onaylı dosya yollarıyla yönetin. Video eklemek için medya alanındaki YouTube bağlantısını kullanın.
           </div>
         </div>
 
         <div className="space-y-5">
-          <div className="rounded-[28px] border border-white/10 bg-black/20 p-5">
+          <div className="rounded-[28px] border border-foreground/10 bg-background/20 p-5">
             <FieldLabel title="Yayın Kontrolleri" description="Yayın durumunu ve öne çıkarma seçimini belirleyin." />
             <div className="grid gap-4">
-              <label className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4 text-sm text-white/75">
+              <label className="flex items-center gap-3 rounded-2xl border border-foreground/10 bg-foreground/[0.03] px-4 py-4 text-sm text-foreground/75">
                 <input type="checkbox" checked={featured} onChange={(e) => setFeatured(e.target.checked)} />
                 Öne çıkan proje olarak işaretle
               </label>
@@ -165,53 +165,53 @@ export function ProjectForm({ mode = 'create', project }: Props) {
                 <option value="Yayında">Yayında</option>
                 <option value="Taslak">Taslak</option>
               </select>
-              <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4 text-sm leading-7 text-white/55">
+              <div className="rounded-2xl border border-foreground/10 bg-foreground/[0.03] px-4 py-4 text-sm leading-7 text-foreground/55">
                 Bu kayıt yönetim paneli, proje detay sayfası ve proje kartlarını aynı veri kaynağı üzerinden besler.
               </div>
             </div>
           </div>
 
-          <div className="rounded-[28px] border border-white/10 bg-black/20 p-5">
+          <div className="rounded-[28px] border border-foreground/10 bg-background/20 p-5">
             <div className="section-eyebrow mb-4">İçerik Özeti</div>
             <div className="grid grid-cols-1 gap-3 min-[380px]:grid-cols-3">
               {editorialStats.map((item) => (
-                <div key={item.label} className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
-                  <div className="text-[11px] uppercase tracking-[0.18em] text-white/35">{item.label}</div>
-                  <div className="mt-3 text-2xl text-white">{item.value}</div>
+                <div key={item.label} className="rounded-2xl border border-foreground/10 bg-foreground/[0.03] p-4">
+                  <div className="text-[11px] uppercase tracking-[0.18em] text-foreground/35">{item.label}</div>
+                  <div className="mt-3 text-2xl text-foreground">{item.value}</div>
                 </div>
               ))}
             </div>
             {mode === 'edit' ? (
-              <div className="mt-4 rounded-2xl border border-white/10 bg-white/[0.02] px-4 py-3 text-sm text-white/55">
+              <div className="mt-4 rounded-2xl border border-foreground/10 bg-foreground/[0.02] px-4 py-3 text-sm text-foreground/55">
                 Mevcut medya: {project?.media?.length || 0} kayıt
               </div>
             ) : null}
           </div>
 
-          <div className="rounded-[28px] border border-white/10 bg-black/20 p-5">
+          <div className="rounded-[28px] border border-foreground/10 bg-background/20 p-5">
             <div className="mb-4 flex items-center justify-between">
-              <div className="text-sm font-semibold text-white">Yayın Kontrol Listesi</div>
-              <div className="text-xs text-white/45">{completedChecklistCount}/{checklist.length} tamam</div>
+              <div className="text-sm font-semibold text-foreground">Yayın Kontrol Listesi</div>
+              <div className="text-xs text-foreground/45">{completedChecklistCount}/{checklist.length} tamam</div>
             </div>
             <div className="space-y-3">
               {checklist.map((item) => (
-                <div key={item.label} className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm">
-                  <span className="text-white/75">{item.label}</span>
-                  <span className={item.complete ? 'text-emerald-300' : 'text-amber-300'}>
+                <div key={item.label} className="flex items-center justify-between rounded-2xl border border-foreground/10 bg-foreground/[0.03] px-4 py-3 text-sm">
+                  <span className="text-foreground/75">{item.label}</span>
+                  <span className={item.complete ? 'text-emerald-700' : 'text-primary'}>
                     {item.complete ? 'Hazır' : 'Eksik'}
                   </span>
                 </div>
               ))}
             </div>
-            <div className="mt-4 rounded-2xl border border-white/10 bg-white/[0.02] px-4 py-3 text-sm text-white/55">
-              Slug önizlemesi: <span className="break-all text-white/80">/projects/{project?.slug || generatedSlug || 'proje-basligi'}</span>
+            <div className="mt-4 rounded-2xl border border-foreground/10 bg-foreground/[0.02] px-4 py-3 text-sm text-foreground/55">
+              Slug önizlemesi: <span className="break-all text-foreground/80">/projects/{project?.slug || generatedSlug || 'proje-basligi'}</span>
             </div>
             {mode === 'edit' && status === 'Yayında' ? (
               <a
                 href={`/projects/${project?.slug || generatedSlug}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 inline-flex h-11 max-w-full items-center rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-white/80 transition hover:bg-white/[0.05]"
+                className="mt-4 inline-flex h-11 max-w-full items-center rounded-2xl border border-foreground/10 bg-foreground/[0.03] px-4 text-sm text-foreground/80 transition hover:bg-foreground/[0.05]"
               >
                 Yayındaki sayfayı aç
               </a>
@@ -220,18 +220,18 @@ export function ProjectForm({ mode = 'create', project }: Props) {
         </div>
       </div>
 
-      <div className="rounded-[28px] border border-white/10 bg-black/20 p-5">
+      <div className="rounded-[28px] border border-foreground/10 bg-background/20 p-5">
         <FieldLabel title="Kısa Özet" description="Kartlarda ve öne çıkan alanlarda görünen kısa metin." />
         <textarea className="textarea-premium w-full" placeholder="Kısa özet" value={summary} onChange={(e) => setSummary(e.target.value)} />
       </div>
 
-      <div className="rounded-[28px] border border-white/10 bg-black/20 p-5">
+      <div className="rounded-[28px] border border-foreground/10 bg-background/20 p-5">
         <FieldLabel title="Detaylı Açıklama" description="Proje detay sayfasında yer alacak ana açıklama metni." />
         <textarea className="textarea-premium min-h-[240px] w-full" placeholder="Detaylı açıklama" value={description} onChange={(e) => setDescription(e.target.value)} />
       </div>
 
-      {error ? <p role="alert" aria-live="assertive" className="rounded-2xl border border-red-400/15 bg-red-400/8 px-4 py-3 text-sm text-red-300">{error}</p> : null}
-      {message ? <p role="status" aria-live="polite" className="rounded-2xl border border-emerald-400/15 bg-emerald-400/8 px-4 py-3 text-sm text-emerald-300">{message}</p> : null}
+      {error ? <p role="alert" aria-live="assertive" className="rounded-2xl border border-red-400/15 bg-red-400/8 px-4 py-3 text-sm text-red-700">{error}</p> : null}
+      {message ? <p role="status" aria-live="polite" className="rounded-2xl border border-emerald-400/15 bg-emerald-400/8 px-4 py-3 text-sm text-emerald-700">{message}</p> : null}
 
       <div className="flex flex-wrap items-center gap-3">
         <button type="submit" className="btn-premium h-12 px-6" disabled={loading}>

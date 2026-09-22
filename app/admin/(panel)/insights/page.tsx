@@ -30,43 +30,43 @@ export default async function AdminInsightsPage() {
     <div className="space-y-6">
       <div>
         <div className="section-eyebrow mb-4">Operasyon Uyarıları</div>
-        <h1 className="font-display text-4xl text-white sm:text-5xl md:text-6xl">İçgörüler</h1>
-        <p className="mt-3 max-w-3xl text-white/60">
+        <h1 className="font-display text-4xl text-foreground sm:text-5xl md:text-6xl">İçgörüler</h1>
+        <p className="mt-3 max-w-3xl text-foreground/60">
           Panel, içerik ve filo verilerinden türetilen risk ve aksiyon noktalarını tek yerde toplayın.
         </p>
       </div>
 
       <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
         <div className="admin-kpi rounded-[24px] p-5">
-          <div className="data-label text-white/45">Toplam Uyarı</div>
-          <div className="mt-3 text-4xl text-white">{summary.total}</div>
+          <div className="data-label text-foreground/45">Toplam Uyarı</div>
+          <div className="mt-3 text-4xl text-foreground">{summary.total}</div>
         </div>
         <div className="admin-kpi rounded-[24px] p-5">
-          <div className="data-label text-white/45">Yüksek</div>
-          <div className="mt-3 text-4xl text-red-300">{summary.high}</div>
+          <div className="data-label text-foreground/45">Yüksek</div>
+          <div className="mt-3 text-4xl text-red-700">{summary.high}</div>
         </div>
         <div className="admin-kpi rounded-[24px] p-5">
-          <div className="data-label text-white/45">Orta</div>
-          <div className="mt-3 text-4xl text-amber-300">{summary.medium}</div>
+          <div className="data-label text-foreground/45">Orta</div>
+          <div className="mt-3 text-4xl text-primary">{summary.medium}</div>
         </div>
         <div className="admin-kpi rounded-[24px] p-5">
-          <div className="data-label text-white/45">Düşük</div>
+          <div className="data-label text-foreground/45">Düşük</div>
           <div className="mt-3 text-4xl text-sky-300">{summary.low}</div>
         </div>
       </div>
 
       <div className="grid gap-5 md:grid-cols-3">
         <div className="admin-kpi rounded-[24px] p-5">
-          <div className="data-label text-white/45">Açık Takip</div>
-          <div className="mt-3 text-4xl text-red-300">{resolutionSummary.open}</div>
+          <div className="data-label text-foreground/45">Açık Takip</div>
+          <div className="mt-3 text-4xl text-red-700">{resolutionSummary.open}</div>
         </div>
         <div className="admin-kpi rounded-[24px] p-5">
-          <div className="data-label text-white/45">İzlemede</div>
-          <div className="mt-3 text-4xl text-amber-300">{resolutionSummary.monitoring}</div>
+          <div className="data-label text-foreground/45">İzlemede</div>
+          <div className="mt-3 text-4xl text-primary">{resolutionSummary.monitoring}</div>
         </div>
         <div className="admin-kpi rounded-[24px] p-5">
-          <div className="data-label text-white/45">Çözüldü</div>
-          <div className="mt-3 text-4xl text-emerald-300">{resolutionSummary.resolved}</div>
+          <div className="data-label text-foreground/45">Çözüldü</div>
+          <div className="mt-3 text-4xl text-emerald-700">{resolutionSummary.resolved}</div>
         </div>
       </div>
 
@@ -79,10 +79,10 @@ export default async function AdminInsightsPage() {
       <div className="grid gap-6 xl:grid-cols-2">
         <div className="admin-surface rounded-[32px] p-6">
           <div className="mb-4 flex items-center gap-3">
-            <ShieldAlert className="h-5 w-5 text-amber-300" />
-            <h2 className="text-2xl text-white">Neden Önemli?</h2>
+            <ShieldAlert className="h-5 w-5 text-primary" />
+            <h2 className="text-2xl text-foreground">Neden Önemli?</h2>
           </div>
-          <p className="text-sm leading-7 text-white/60">
+          <p className="text-sm leading-7 text-foreground/60">
             Bu alan yalnızca ham veriyi listelemek yerine, panelde birikmiş operasyon risklerini görünür kılar.
             Böylece hangi sayfaya önce müdahale etmeniz gerektiği daha net hale gelir.
           </p>
@@ -90,10 +90,10 @@ export default async function AdminInsightsPage() {
 
         <div className="admin-surface rounded-[32px] p-6">
           <div className="mb-4 flex items-center gap-3">
-            <AlertTriangle className="h-5 w-5 text-amber-300" />
-            <h2 className="text-2xl text-white">İleri Adım</h2>
+            <AlertTriangle className="h-5 w-5 text-primary" />
+            <h2 className="text-2xl text-foreground">İleri Adım</h2>
           </div>
-          <p className="text-sm leading-7 text-white/60">
+          <p className="text-sm leading-7 text-foreground/60">
             İçgörüler artık çözüm durumu ve takip notuyla saklanır; sonraki aşamada otomatik temizlik aksiyonları da eklenebilir.
           </p>
         </div>

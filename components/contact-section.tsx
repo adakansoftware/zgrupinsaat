@@ -171,23 +171,23 @@ export function ContactSection({ settings, mapsEmbedUrl = '' }: ContactSectionPr
                 />
               </div>
 
-              {error ? <p className="text-sm text-red-400" role="alert" aria-live="assertive">{error}</p> : null}
-              {feedback ? <p className="text-sm text-emerald-300" role="status" aria-live="polite">{feedback}</p> : null}
+              {error ? <p className="text-sm text-red-700" role="alert" aria-live="assertive">{error}</p> : null}
+              {feedback ? <p className="text-sm text-emerald-700" role="status" aria-live="polite">{feedback}</p> : null}
               {reference ? (
-                <p className="text-sm text-white/55" role="status" aria-live="polite">
-                  Talep referansı: <span className="font-medium text-white">{reference}</span>
+                <p className="text-sm text-foreground/55" role="status" aria-live="polite">
+                  Talep referansı: <span className="font-medium text-foreground">{reference}</span>
                 </p>
               ) : null}
 
-              <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4 text-sm leading-7 text-white/60">
+              <div className="rounded-2xl border border-foreground/10 bg-foreground/[0.03] px-4 py-4 text-sm leading-7 text-foreground/60">
                 Kişisel verileriniz, talebinizin değerlendirilmesi ve sizinle iletişime geçilmesi amacıyla işlenmektedir. Detaylı bilgi için{' '}
-                <Link href="/kvkk-aydinlatma-metni" className="font-medium text-white underline decoration-white/20 underline-offset-4 transition hover:decoration-white">
+                <Link href="/kvkk-aydinlatma-metni" className="font-medium text-foreground underline decoration-foreground/20 underline-offset-4 transition hover:decoration-foreground">
                   KVKK Aydınlatma Metni&apos;ni
                 </Link>{' '}
                 inceleyebilirsiniz.
               </div>
 
-              <label className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.02] px-4 py-4 text-sm leading-6 text-white/65">
+              <label className="flex items-start gap-3 rounded-2xl border border-foreground/10 bg-foreground/[0.02] px-4 py-4 text-sm leading-6 text-foreground/65">
                 <input type="checkbox" checked={marketingConsent} onChange={(event) => setMarketingConsent(event.target.checked)} className="mt-1" />
                 <span>Talebimle ilgili bilgilendirme, keşif ve teklif süreci için benimle iletişime geçilmesini kabul ediyorum.</span>
               </label>
@@ -246,7 +246,7 @@ export function ContactSection({ settings, mapsEmbedUrl = '' }: ContactSectionPr
                 <div className="w-full">
                   <iframe
                     src={mapsEmbedUrl}
-                    title="Sallıhoğulları Hafriyat konum haritası"
+                    title="Z GRUP İNŞAAT konum haritası"
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                     className="aspect-[4/3] w-full border-0"

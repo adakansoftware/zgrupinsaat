@@ -53,7 +53,7 @@ export function MediaActions({
   }
 
   return (
-    <div className="space-y-3 rounded-2xl border border-white/10 bg-black/20 p-3">
+    <div className="space-y-3 rounded-2xl border border-foreground/10 bg-background/20 p-3">
       <input className="input-premium h-11 w-full" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Medya başlığı" />
       <div className="flex flex-wrap items-center gap-3">
         <input type="number" className="input-premium h-11 w-28" value={sortOrder} onChange={(e) => setSortOrder(Number(e.target.value))} />
@@ -65,10 +65,10 @@ export function MediaActions({
             Kapağa Al
           </button>
         ) : (
-          <span className="rounded-full border border-amber-400/25 px-3 py-2 text-xs text-amber-300">Kapak Görseli</span>
+          <span className="rounded-full border border-primary/25 px-3 py-2 text-xs text-primary">Kapak Görseli</span>
         )}
       </div>
-      {error ? <p role="alert" aria-live="assertive" className="text-xs text-red-400">{error}</p> : null}
+      {error ? <p role="alert" aria-live="assertive" className="text-xs text-red-700">{error}</p> : null}
     </div>
   )
 }

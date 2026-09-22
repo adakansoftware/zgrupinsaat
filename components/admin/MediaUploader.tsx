@@ -112,21 +112,21 @@ export function MediaUploader({ projectId }: { projectId: string }) {
   return (
     <div aria-busy={loading} className="space-y-8">
       {error ? (
-        <p role="alert" aria-live="assertive" className="rounded-2xl border border-red-400/15 bg-red-400/8 px-4 py-3 text-sm text-red-300">
+        <p role="alert" aria-live="assertive" className="rounded-2xl border border-red-400/15 bg-red-400/8 px-4 py-3 text-sm text-red-700">
           {error}
         </p>
       ) : null}
 
-      <div className="rounded-[24px] border border-white/10 bg-black/20 p-4 text-sm leading-7 text-white/55">
+      <div className="rounded-[24px] border border-foreground/10 bg-background/20 p-4 text-sm leading-7 text-foreground/55">
         Doğrudan dosya yükleme bu kurulumda kapalıdır. Yine de adminden medya yönetebilirsin:
         görselleri `/images/...` veya `/uploads/...` yolu ile, videoları ise YouTube bağlantısı ile ekleyebilirsin.
       </div>
 
       <div className="grid gap-6 xl:grid-cols-2">
-        <form onSubmit={handleImageAdd} className="rounded-[24px] border border-white/10 bg-black/20 p-5 space-y-5">
+        <form onSubmit={handleImageAdd} className="rounded-[24px] border border-foreground/10 bg-background/20 p-5 space-y-5">
           <div>
-            <div className="text-sm font-semibold text-white">Fotoğraf Ekle</div>
-            <div className="mt-1 text-xs leading-6 text-white/45">
+            <div className="text-sm font-semibold text-foreground">Fotoğraf Ekle</div>
+            <div className="mt-1 text-xs leading-6 text-foreground/45">
               Projede kullanmak istediğin görselin public yolunu ekle. Örnek: `/images/project-1.jpg`
             </div>
           </div>
@@ -148,7 +148,7 @@ export function MediaUploader({ projectId }: { projectId: string }) {
               value={imageSortOrder}
               onChange={(e) => setImageSortOrder(Number(e.target.value))}
             />
-            <label className="admin-surface-muted flex items-center gap-3 rounded-2xl px-4 py-3 text-sm text-white/70">
+            <label className="admin-surface-muted flex items-center gap-3 rounded-2xl px-4 py-3 text-sm text-foreground/70">
               <input type="checkbox" checked={imageIsCover} onChange={(e) => setImageIsCover(e.target.checked)} />
               Kapak görseli olarak işaretle
             </label>
@@ -159,10 +159,10 @@ export function MediaUploader({ projectId }: { projectId: string }) {
           </button>
         </form>
 
-        <form onSubmit={handleYouTubeAdd} className="rounded-[24px] border border-white/10 bg-black/20 p-5 space-y-5">
+        <form onSubmit={handleYouTubeAdd} className="rounded-[24px] border border-foreground/10 bg-background/20 p-5 space-y-5">
           <div>
-            <div className="text-sm font-semibold text-white">Video Linki Ekle</div>
-            <div className="mt-1 text-xs leading-6 text-white/45">
+            <div className="text-sm font-semibold text-foreground">Video Linki Ekle</div>
+            <div className="mt-1 text-xs leading-6 text-foreground/45">
               Video dosyası yüklenmez. YouTube paylaşım bağlantısını girerek projeye video ekleyebilirsin.
             </div>
           </div>

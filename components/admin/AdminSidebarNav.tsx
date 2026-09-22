@@ -41,7 +41,7 @@ export function AdminSidebarNav({ unreadCount }: { unreadCount: number }) {
               <span>{item.label}</span>
             </span>
             {item.href === '/admin/messages' ? (
-              <span className="rounded-full border border-amber-400/20 bg-amber-400/10 px-2 py-0.5 text-xs text-amber-300">
+              <span className="rounded-full border border-primary/20 bg-primary/10 px-2 py-0.5 text-xs text-primary">
                 {unreadCount}
               </span>
             ) : null}
