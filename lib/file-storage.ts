@@ -33,7 +33,7 @@ export async function readJsonFileWithBackup<T>(
 
   for (const candidate of candidates) {
     try {
-      const raw = await fs.readFile(candidate.path, 'utf8')
+      const raw = await fs.readFile(/* turbopackIgnore: true */ candidate.path, 'utf8')
       return { data: schema.parse(JSON.parse(raw)), source: candidate.source }
     } catch {
       // Try the next candidate.

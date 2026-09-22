@@ -7,6 +7,17 @@ const isProduction = process.env.NODE_ENV === 'production'
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   poweredByHeader: false,
+  // Dynamic file-storage reads are bundled explicitly, without tracing the project root.
+  outputFileTracingIncludes: {
+    '/*': [
+      './data/fleet.json',
+      './data/services.json',
+      './data/projects.json',
+      './data/settings.json',
+      './data/admin-issue-status.json',
+      './data/admin-issue-history.json',
+    ],
+  },
   images: {
     unoptimized: true,
     qualities: [75, 82, 95],
