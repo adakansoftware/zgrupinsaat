@@ -63,15 +63,22 @@ const envSchema = z
     }
   })
 
+// `next build` evaluates modules during page data collection, often in an
+// environment without runtime secrets. Substitute inert placeholders there;
+// runtime (`next start`) still validates the real values.
+const isNextBuildPhase = process.env.NEXT_PHASE === 'phase-production-build'
+
 const parsedEnv = envSchema.safeParse({
   NODE_ENV: process.env.NODE_ENV,
   CONTENT_STORE: process.env.CONTENT_STORE,
   RATE_LIMIT_STORE: process.env.RATE_LIMIT_STORE,
   DATABASE_URL: process.env.DATABASE_URL,
-  ADMIN_EMAIL: process.env.ADMIN_EMAIL,
-  ADMIN_PASSWORD: process.env.ADMIN_PASSWORD,
+  ADMIN_EMAIL: process.env.ADMIN_EMAIL ?? (isNextBuildPhase ? 'build@example.com' : undefined),
+  ADMIN_PASSWORD: process.env.ADMIN_PASSWORD ?? (isNextBuildPhase ? 'next-build-placeholder' : undefined),
   ADMIN_PASSWORD_HASH: process.env.ADMIN_PASSWORD_HASH,
-  ADMIN_SESSION_SECRET: process.env.ADMIN_SESSION_SECRET || process.env.AUTH_SECRET,
+  ADMIN_SESSION_SECRET:
+    process.env.ADMIN_SESSION_SECRET || process.env.AUTH_SECRET ||
+    (isNextBuildPhase ? 'next-build-placeholder-secret-not-used-at-runtime' : undefined),
   APP_ORIGIN: process.env.APP_ORIGIN,
   NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
   GOOGLE_SITE_VERIFICATION: process.env.GOOGLE_SITE_VERIFICATION,
