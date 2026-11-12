@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { mkdtemp, rm, writeFile } from 'node:fs/promises'
+import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
 import os from 'node:os'
 import path from 'node:path'
 
@@ -28,6 +28,145 @@ async function run() {
   const { readRequestTextWithinLimit } = await import('../lib/request-body-core.ts')
   const { isValidUuidRouteParam } = await import('../lib/route-params-core.ts')
   const { isCleanPublicPathUrl, isPathInside } = await import('../lib/path-security.ts')
+  const { shouldPersistOperationalState } = await import('../lib/build-phase-core.ts')
+  assert.equal(shouldPersistOperationalState('phase-production-build'), false)
+  assert.equal(shouldPersistOperationalState(undefined), true)
+  const {
+    PUBLIC_PHONE_DISPLAY,
+    PUBLIC_PHONE_TEL,
+    PUBLIC_WHATSAPP_URL,
+    withPublicContactDetails,
+  } = await import('../lib/contact-details.ts')
+
+  assert.equal(PUBLIC_PHONE_DISPLAY, '+90 532 449 94 55')
+  assert.equal(PUBLIC_PHONE_TEL, 'tel:+905324499455')
+  assert.equal(PUBLIC_WHATSAPP_URL, 'https://wa.me/905324499455')
+  assert.deepEqual(
+    withPublicContactDetails({
+      contactPhone: '+90 539 941 65 21',
+      contactPhoneSecondary: '+90 532 555 55 55',
+      whatsappUrl: 'https://wa.me/905399416521',
+    }),
+    {
+      contactPhone: PUBLIC_PHONE_DISPLAY,
+      contactPhoneSecondary: '',
+      whatsappUrl: PUBLIC_WHATSAPP_URL,
+    },
+  )
+
+  const publicContactSources = await Promise.all(
+    [
+      'components/navbar.tsx',
+      'components/hero.tsx',
+      'components/cta-section.tsx',
+      'components/footer.tsx',
+      'components/contact-section.tsx',
+      'components/floating-whatsapp.tsx',
+    ].map((file) => readFile(path.join(process.cwd(), file), 'utf8')),
+  )
+  const publicContactSource = publicContactSources.join('\n')
+  assert.doesNotMatch(publicContactSource, /contactPhoneSecondary/)
+  assert.doesNotMatch(publicContactSource, /539\s*941|905399416521|532\s*555/)
+  assert.match(publicContactSource, /whitespace-nowrap/)
+
+  const {
+    buildBreadcrumbJsonLd,
+    buildFaqJsonLd,
+    buildFleetJsonLd,
+    buildProjectJsonLd,
+    buildServiceJsonLd,
+  } = await import('../lib/seo-schema-core.ts')
+  const { buildLlmsFull, buildLlmsIndex } = await import('../lib/llms-content.ts')
+
+  const schemaSettings = {
+    companyName: 'Z GRUP İNŞAAT',
+    companyShortName: 'Z GRUP',
+    contactPhone: PUBLIC_PHONE_DISPLAY,
+    contactPhoneSecondary: '',
+    contactEmail: 'info@zgrupinsaat.com',
+    contactEmailSecondary: '',
+    address: 'Adana, Türkiye',
+    serviceArea: 'Adana merkezli hafriyat hizmetleri',
+    workingHours: 'Pazartesi - Cumartesi / 07:00 - 19:00',
+    foundedYear: '1999',
+    instagramUrl: 'https://www.instagram.com/zgrupinsaat',
+    whatsappUrl: PUBLIC_WHATSAPP_URL,
+    heroTitle: 'Hafriyat ve nakliyat',
+    heroDescription: 'Saha hizmetleri',
+    quoteNotice: 'Teklif için iletişime geçin.',
+  }
+  const breadcrumb = buildBreadcrumbJsonLd([
+    { name: 'Ana Sayfa', path: '/' },
+    { name: 'Hizmetler', path: '/services' },
+  ], 'https://example.com')
+  assert.equal(breadcrumb['@type'], 'BreadcrumbList')
+  assert.equal(breadcrumb.itemListElement[1].item, 'https://example.com/services')
+
+  const faqItems = [{ question: 'Hangi bilgi gerekir?', answer: 'Konum ve yaklaşık metraj gerekir.' }]
+  const faq = buildFaqJsonLd(faqItems)
+  assert.equal(faq['@type'], 'FAQPage')
+  assert.equal(faq.mainEntity[0].name, faqItems[0].question)
+  assert.equal(faq.mainEntity[0].acceptedAnswer.text, faqItems[0].answer)
+
+  const serviceSchema = buildServiceJsonLd(
+    { title: 'Temel Kazısı', description: 'Temel kazısı hizmeti', path: '/services/temel-kazisi', image: '/images/excavator.jpg' },
+    schemaSettings,
+    'https://example.com',
+  )
+  assert.equal(serviceSchema['@type'], 'Service')
+  assert.equal(serviceSchema.provider['@id'], 'https://example.com/#organization')
+
+  const projectSchema = buildProjectJsonLd(
+    {
+      title: 'Örnek Saha Çalışması',
+      slug: 'ornek-saha-calismasi',
+      summary: 'Mevcut proje özeti',
+      description: 'Mevcut proje açıklaması',
+      location: 'Adana',
+      category: 'Hafriyat',
+      coverImage: '/images/project-1.jpg',
+      tags: ['Hafriyat'],
+      updatedAt: '2026-01-02T00:00:00.000Z',
+    },
+    schemaSettings,
+    'https://example.com',
+  )
+  assert.equal(projectSchema['@type'], 'Project')
+  assert.equal(projectSchema.name, 'Örnek Saha Çalışması')
+  assert.equal(projectSchema.location.name, 'Adana')
+
+  const fleetSchema = buildFleetJsonLd(
+    {
+      name: 'Ekskavatör',
+      slug: 'ekskavator',
+      description: 'Mevcut filo açıklaması',
+      image: '/images/excavator.jpg',
+      models: [{ name: 'Model A' }],
+    },
+    schemaSettings,
+    'https://example.com',
+  )
+  assert.equal(fleetSchema['@type'], 'Product')
+  assert.equal(fleetSchema.brand.name, 'Z GRUP İNŞAAT')
+  assert.equal('offers' in fleetSchema, false)
+  assert.equal('aggregateRating' in fleetSchema, false)
+
+  const robotsSource = await readFile(path.join(process.cwd(), 'app/robots.ts'), 'utf8')
+  assert.match(robotsSource, /OAI-SearchBot/)
+  assert.match(robotsSource, /OAI-AdsBot/)
+
+  const llmsIndex = buildLlmsIndex(schemaSettings, [{ title: 'Temel Kazısı', path: '/services/temel-kazisi', description: 'Kazı hizmeti' }], 'https://example.com')
+  assert.match(llmsIndex, /# Z GRUP İNŞAAT/)
+  assert.match(llmsIndex, /https:\/\/example\.com\/services\/temel-kazisi/)
+  const llmsFull = buildLlmsFull({
+    settings: schemaSettings,
+    services: [{ title: 'Temel Kazısı', path: '/services/temel-kazisi', description: 'Kazı hizmeti', faq: faqItems }],
+    projects: [{ title: 'Örnek Saha Çalışması', path: '/projects/ornek-saha-calismasi', description: 'Proje özeti', location: 'Adana' }],
+    fleet: [{ title: 'Ekskavatör', path: '/fleet/ekskavator', description: 'Filo özeti' }],
+  }, 'https://example.com')
+  assert.match(llmsFull, /## Gerçek SSS/)
+  assert.match(llmsFull, /Örnek Saha Çalışması/)
+  assert.doesNotMatch(llmsFull, /rating|yorum|koordinat/i)
 
   const nextConfig = await import('../next.config.mjs')
   const configuredHeaders = await nextConfig.default.headers()

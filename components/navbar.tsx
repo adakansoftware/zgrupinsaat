@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ChevronRight, Menu, MessageCircle, Phone, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { PUBLIC_PHONE_TEL } from '@/lib/contact-details'
 import { isRealPhoneValue, isRealWhatsAppUrl } from '@/lib/contact-utils'
 import type { SiteSettings } from '@/lib/store'
 import { siteQuickLinks } from '@/lib/site-content'
@@ -108,9 +109,9 @@ export function Navbar({ settings }: { settings: SiteSettings }) {
 
             <div className="hidden items-center gap-5 lg:flex">
               {hasPhone ? (
-                <a href={`tel:${settings.contactPhone.replace(/\s+/g, '')}`} className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground">
+                <a href={PUBLIC_PHONE_TEL} className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground">
                   <Phone className="h-4 w-4 text-primary" />
-                  <span className="font-semibold">{settings.contactPhone}</span>
+                  <span className="whitespace-nowrap font-semibold">{settings.contactPhone}</span>
                 </a>
               ) : null}
               {hasWhatsApp ? (
@@ -179,9 +180,9 @@ export function Navbar({ settings }: { settings: SiteSettings }) {
           })}
           <div className="mt-4 space-y-4 border-t border-border pt-6">
             {hasPhone ? (
-              <a href={`tel:${settings.contactPhone.replace(/\s+/g, '')}`} onClick={closeMobileMenu} className="flex items-center gap-3 px-4 py-3 text-muted-foreground">
+              <a href={PUBLIC_PHONE_TEL} onClick={closeMobileMenu} className="flex items-center gap-3 px-4 py-3 text-muted-foreground">
                 <Phone className="h-5 w-5 text-primary" />
-                <span className="font-semibold">{settings.contactPhone}</span>
+                <span className="whitespace-nowrap font-semibold">{settings.contactPhone}</span>
               </a>
             ) : null}
             {hasWhatsApp ? (

@@ -2,12 +2,12 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Instagram, Mail, MapPin, Phone } from 'lucide-react'
 import { isRealPhoneValue } from '@/lib/contact-utils'
+import { PUBLIC_PHONE_TEL } from '@/lib/contact-details'
 import type { SiteSettings } from '@/lib/store'
 import { footerServiceLinks, siteQuickLinks } from '@/lib/site-content'
 
 export function Footer({ settings }: { settings: SiteSettings }) {
   const hasPhone = isRealPhoneValue(settings.contactPhone)
-  const hasSecondaryPhone = isRealPhoneValue(settings.contactPhoneSecondary)
 
   return (
     <footer className="relative overflow-hidden border-t border-border/30 bg-card">
@@ -90,14 +90,9 @@ export function Footer({ settings }: { settings: SiteSettings }) {
                 <li className="flex items-start gap-3">
                   <Phone className="mt-1 h-4 w-4 shrink-0 text-primary" />
                   <div className="min-w-0">
-                    <a href={`tel:${settings.contactPhone.replace(/\s+/g, '')}`} className="break-all text-sm font-medium text-foreground transition-colors hover:text-primary">
+                    <a href={PUBLIC_PHONE_TEL} className="whitespace-nowrap text-sm font-medium text-foreground transition-colors hover:text-primary">
                       {settings.contactPhone}
                     </a>
-                    {hasSecondaryPhone ? (
-                      <a href={`tel:${settings.contactPhoneSecondary.replace(/\s+/g, '')}`} className="block break-all text-sm text-muted-foreground transition-colors hover:text-primary">
-                        {settings.contactPhoneSecondary}
-                      </a>
-                    ) : null}
                   </div>
                 </li>
               ) : null}
@@ -132,7 +127,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
           <div className="break-words text-xs text-muted-foreground">
             Design by{' '}
             <a
-              href="https://www.instagram.com/adakansoftware"
+              href="https://www.adakansoftware.com"
               target="_blank"
               rel="noopener noreferrer"
               className="font-medium text-foreground transition-colors hover:text-primary"

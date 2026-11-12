@@ -4,7 +4,8 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { CTASection } from '@/components/cta-section'
 import { PageHero } from '@/components/page-hero'
 import { SiteFrame } from '@/components/site-frame'
-import { buildShareMetadata, getCanonicalUrl } from '@/lib/seo'
+import { serializeJsonForScript } from '@/lib/json-script-core'
+import { buildBreadcrumbJsonLd, buildFaqJsonLd, buildServiceJsonLd, buildShareMetadata, getCanonicalUrl } from '@/lib/seo'
 import { findServiceBySlug, getServiceHref, serviceDetails } from '@/lib/services-data'
 import { getSiteSettings } from '@/lib/settings-service'
 
@@ -38,6 +39,7 @@ export async function generateMetadata({ params }: ServiceDetailPageProps): Prom
       title: `${service.title} | Z GRUP İNŞAAT`,
       description: service.metaDescription,
       pathname: getServiceHref(service.slug),
+      image: service.image,
     }),
   }
 }
@@ -51,9 +53,27 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
   }
 
   const settings = await getSiteSettings()
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: 'Ana Sayfa', path: '/' },
+    { name: 'Hizmetler', path: '/services' },
+    { name: service.title, path: getServiceHref(service.slug) },
+  ])
+  const serviceJsonLd = buildServiceJsonLd(
+    {
+      title: service.title,
+      description: service.metaDescription,
+      path: getServiceHref(service.slug),
+      image: service.image,
+    },
+    settings,
+  )
+  const faqJsonLd = buildFaqJsonLd(service.faq)
 
   return (
     <SiteFrame settings={settings}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonForScript(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonForScript(serviceJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonForScript(faqJsonLd) }} />
       <PageHero
         title={service.title}
         description={service.description}

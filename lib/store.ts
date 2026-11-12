@@ -77,7 +77,7 @@ const settingsFile = path.join(dataDir, 'settings.json')
 const defaultSettings: SiteSettings = {
   companyName: 'Z GRUP İNŞAAT',
   companyShortName: 'Z GRUP',
-  contactPhone: '+90 539 941 65 21',
+  contactPhone: '+90 532 449 94 55',
   contactPhoneSecondary: '',
   contactEmail: 'info@zgrupinsaat.com',
   contactEmailSecondary: 'teklif@zgrupinsaat.com',
@@ -86,7 +86,7 @@ const defaultSettings: SiteSettings = {
   workingHours: 'Pazartesi - Cumartesi / 07:00 - 19:00',
   foundedYear: '1999',
   instagramUrl: 'https://www.instagram.com/zgrupinsaat',
-  whatsappUrl: 'https://wa.me/905399416521',
+  whatsappUrl: 'https://wa.me/905324499455',
   heroTitle: 'Hafriyat, temel kazısı ve nakliyatta, sahada güçlü plan',
   heroDescription: 'Temel kazısı, dolgu, zemin hazırlığı, hafriyat nakliyesi, lowbed ve arazöz ihtiyaçlarında makine, kamyon ve sevkiyat düzenini sahanın gerçek akışına göre kuruyoruz.',
   quoteNotice: 'Konum, metraj, malzeme türü ve çalışma takvimini paylaşın; doğru ekip, doğru araç ve uygulanabilir teklif planını birlikte netleştirelim.',

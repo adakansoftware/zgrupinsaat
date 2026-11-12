@@ -55,7 +55,7 @@ export default async function AdminPanelLayout({ children }: Readonly<{ children
             <div className="mt-3 text-2xl text-foreground">Hazır</div>
             <p className="mt-2 break-words text-sm text-foreground/55">{settings.serviceArea}</p>
             <div className="mt-4 flex flex-wrap gap-2 text-xs text-foreground/55">
-              <span className="max-w-full break-all rounded-full border border-foreground/10 px-3 py-1">{settings.contactPhone}</span>
+              <span className="max-w-full whitespace-nowrap rounded-full border border-foreground/10 px-3 py-1">{settings.contactPhone}</span>
               <span className="max-w-full break-all rounded-full border border-foreground/10 px-3 py-1">{settings.contactEmail}</span>
             </div>
           </div>

@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ChevronRight, Phone } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { PUBLIC_PHONE_TEL } from '@/lib/contact-details'
 import { isRealPhoneValue } from '@/lib/contact-utils'
 import type { SiteSettings } from '@/lib/store'
 
@@ -42,7 +43,7 @@ export function CTASection({ settings }: { settings: SiteSettings }) {
             <div className="flex flex-col gap-4 sm:flex-row">
               {hasPhone ? (
                 <Button asChild size="lg" className="h-14 w-full gap-2 bg-primary px-8 text-sm font-bold uppercase tracking-wider text-primary-foreground hover:bg-primary/90 sm:w-auto">
-                  <a href={`tel:${settings.contactPhone.replace(/\s+/g, '')}`}>
+                  <a href={PUBLIC_PHONE_TEL}>
                     <Phone className="h-5 w-5" />
                     Hemen Ara
                   </a>

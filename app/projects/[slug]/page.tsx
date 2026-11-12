@@ -7,7 +7,8 @@ import { CTASection } from '@/components/cta-section'
 import { SiteFrame } from '@/components/site-frame'
 import { YouTubeVideo } from '@/components/youtube-video'
 import { buildProjectGallery, buildProjectHighlights, buildProjectScopes, findPublishedProjectBySlug } from '@/lib/project-service'
-import { buildShareMetadata, getCanonicalUrl } from '@/lib/seo'
+import { serializeJsonForScript } from '@/lib/json-script-core'
+import { buildBreadcrumbJsonLd, buildProjectJsonLd, buildShareMetadata, getCanonicalUrl } from '@/lib/seo'
 import { getSiteSettings } from '@/lib/settings-service'
 
 function formatProjectDate(value: string) {
@@ -71,9 +72,17 @@ export default async function ProjectDetailPage({
   const supportingMedia = gallery.slice(1, 5)
   const highlights = buildProjectHighlights(project)
   const scopes = buildProjectScopes(project)
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: 'Ana Sayfa', path: '/' },
+    { name: 'Projeler', path: '/projects' },
+    { name: project.title, path: `/projects/${project.slug}` },
+  ])
+  const projectJsonLd = buildProjectJsonLd(project, settings)
 
   return (
     <SiteFrame settings={settings}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonForScript(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonForScript(projectJsonLd) }} />
       <section className="relative overflow-hidden pt-36 pb-18 lg:pt-44">
         <div className="absolute inset-0">
           <Image src={project.coverImage || '/images/project-1.jpg'} alt={`${project.title} - Z GRUP İNŞAAT proje görseli`} fill className="object-cover" priority quality={95} />

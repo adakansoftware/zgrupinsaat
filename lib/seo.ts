@@ -1,6 +1,15 @@
 import type { Metadata } from 'next'
 import type { SiteSettings } from '@/lib/store'
 import { env } from '@/lib/env'
+import {
+  buildBreadcrumbJsonLd as buildBreadcrumbJsonLdCore,
+  buildFaqJsonLd,
+  buildFleetJsonLd as buildFleetJsonLdCore,
+  buildProjectJsonLd as buildProjectJsonLdCore,
+  buildServiceJsonLd as buildServiceJsonLdCore,
+} from '@/lib/seo-schema-core'
+import type { FleetItem } from '@/lib/fleet-service'
+import type { Project } from '@/lib/store'
 
 export const DEFAULT_SHARE_IMAGE = '/images/hero-main.jpg'
 const SEO_BRAND = 'Z GRUP İNŞAAT'
@@ -23,8 +32,6 @@ const SEO_SERVICES = [
   'İnşaat Sahası Hazırlığı',
   'Moloz ve Hafriyat Taşıma',
 ]
-
-const SEO_AREAS = ['Adana', 'Hatay', 'Antakya', 'İskenderun', 'Osmaniye', 'Mersin']
 
 const SEO_KEYWORD_SEEDS = [
   ...BRAND_ALIASES,
@@ -241,6 +248,10 @@ export function buildDefaultMetadata(settings: SiteSettings): Metadata {
     },
     category: 'business',
     keywords: Array.from(new Set([SEO_BRAND, settings.companyName, settings.companyShortName, ...SEO_KEYWORDS, settings.serviceArea])),
+    other: {
+      'geo.region': 'TR-01',
+      'geo.placename': SEO_LOCALITY,
+    },
     formatDetection: {
       telephone: false,
       email: false,
@@ -289,16 +300,14 @@ export function buildOrganizationJsonLd(settings: SiteSettings) {
     email: settings.contactEmail,
     address: {
       '@type': 'PostalAddress',
-      streetAddress: settings.address,
       addressLocality: SEO_LOCALITY,
       addressCountry: 'TR',
     },
     areaServed: [
-      ...SEO_AREAS.map((area) => ({
+      {
         '@type': 'AdministrativeArea',
-        name: area,
-      })),
-      settings.serviceArea,
+        name: settings.serviceArea,
+      },
     ],
     knowsAbout: SEO_SERVICES,
     hasOfferCatalog: {
@@ -364,4 +373,25 @@ export function buildServicesJsonLd(settings: SiteSettings) {
       },
     })),
   }
+}
+
+export function buildBreadcrumbJsonLd(items: Array<{ name: string; path: string }>) {
+  return buildBreadcrumbJsonLdCore(items, getMetadataBase().toString())
+}
+
+export { buildFaqJsonLd }
+
+export function buildServiceJsonLd(
+  service: { title: string; description: string; path: string; image?: string },
+  settings: SiteSettings,
+) {
+  return buildServiceJsonLdCore(service, settings, getMetadataBase().toString())
+}
+
+export function buildProjectJsonLd(project: Project, settings: SiteSettings) {
+  return buildProjectJsonLdCore(project, settings, getMetadataBase().toString())
+}
+
+export function buildFleetJsonLd(item: FleetItem, settings: SiteSettings) {
+  return buildFleetJsonLdCore(item, settings, getMetadataBase().toString())
 }

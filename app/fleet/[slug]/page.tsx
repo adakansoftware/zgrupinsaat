@@ -6,7 +6,8 @@ import { CTASection } from '@/components/cta-section'
 import { PageHero } from '@/components/page-hero'
 import { SiteFrame } from '@/components/site-frame'
 import { findFleetBySlug, getFleetHref, listFleetItems } from '@/lib/fleet-service'
-import { buildShareMetadata, getCanonicalUrl } from '@/lib/seo'
+import { serializeJsonForScript } from '@/lib/json-script-core'
+import { buildBreadcrumbJsonLd, buildFleetJsonLd, buildShareMetadata, getCanonicalUrl } from '@/lib/seo'
 import { getSiteSettings } from '@/lib/settings-service'
 
 type FleetDetailPageProps = {
@@ -40,6 +41,7 @@ export async function generateMetadata({ params }: FleetDetailPageProps): Promis
       title: `${item.name} | Z GRUP İNŞAAT`,
       description: item.description,
       pathname: getFleetHref(item.slug),
+      image: item.image,
     }),
   }
 }
@@ -52,8 +54,17 @@ export default async function FleetDetailPage({ params }: FleetDetailPageProps) 
     notFound()
   }
 
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: 'Ana Sayfa', path: '/' },
+    { name: 'Filo', path: '/fleet' },
+    { name: item.name, path: getFleetHref(item.slug) },
+  ])
+  const fleetJsonLd = buildFleetJsonLd(item, settings)
+
   return (
     <SiteFrame settings={settings}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonForScript(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonForScript(fleetJsonLd) }} />
       <PageHero
         title={item.name}
         description={item.description}

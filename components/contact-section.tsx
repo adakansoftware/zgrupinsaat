@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { Phone, Mail, MapPin, Clock, Send, ChevronRight } from 'lucide-react'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
+import { PUBLIC_PHONE_TEL } from '@/lib/contact-details'
 import { isRealPhoneValue, isRealWhatsAppUrl } from '@/lib/contact-utils'
 import type { SiteSettings } from '@/lib/store'
 
@@ -29,11 +30,10 @@ export function ContactSection({ settings, mapsEmbedUrl = '' }: ContactSectionPr
 
   const [days, hours] = settings.workingHours.split('/').map((item) => item.trim())
   const hasPhone = isRealPhoneValue(settings.contactPhone)
-  const hasSecondaryPhone = isRealPhoneValue(settings.contactPhoneSecondary)
   const hasWhatsApp = isRealWhatsAppUrl(settings.whatsappUrl)
   const hasMapsEmbed = mapsEmbedUrl.startsWith('https://')
   const contactInfo = [
-    hasPhone ? { icon: Phone, label: 'Telefon', value: settings.contactPhone, subValue: hasSecondaryPhone ? settings.contactPhoneSecondary : '' } : null,
+    hasPhone ? { icon: Phone, label: 'Telefon', value: settings.contactPhone, subValue: '' } : null,
     { icon: Mail, label: 'E-posta', value: settings.contactEmail, subValue: settings.contactEmailSecondary },
     { icon: MapPin, label: 'Adres', value: settings.address, subValue: settings.serviceArea },
     { icon: Clock, label: 'Çalışma Saatleri', value: days || settings.workingHours, subValue: hours || '' },
@@ -210,14 +210,9 @@ export function ContactSection({ settings, mapsEmbedUrl = '' }: ContactSectionPr
                     <div className="mb-1 text-xs uppercase tracking-wider text-muted-foreground">{info.label}</div>
                     {info.label === 'Telefon' ? (
                       <>
-                        <a href={`tel:${String(info.value).replace(/\s+/g, '')}`} className="break-all font-semibold text-foreground transition-colors hover:text-primary">
+                        <a href={PUBLIC_PHONE_TEL} className="whitespace-nowrap font-semibold text-foreground transition-colors hover:text-primary">
                           {info.value}
                         </a>
-                        {info.subValue ? (
-                          <a href={`tel:${String(info.subValue).replace(/\s+/g, '')}`} className="block break-all text-sm text-muted-foreground transition-colors hover:text-primary">
-                            {info.subValue}
-                          </a>
-                        ) : null}
                       </>
                     ) : info.label === 'E-posta' ? (
                       <>

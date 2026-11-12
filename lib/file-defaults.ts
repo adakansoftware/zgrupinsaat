@@ -3,8 +3,8 @@ import type { SiteSettings } from '@/lib/store'
 export const defaultSiteSettings: SiteSettings = {
   companyName: 'Z GRUP İNŞAAT',
   companyShortName: 'Z GRUP',
-  contactPhone: '+90 539 941 65 21',
-  contactPhoneSecondary: '+90 532 555 55 55',
+  contactPhone: '+90 532 449 94 55',
+  contactPhoneSecondary: '',
   contactEmail: 'info@zgrupinsaat.com',
   contactEmailSecondary: 'teklif@zgrupinsaat.com',
   address: 'Adana, Türkiye',
@@ -12,7 +12,7 @@ export const defaultSiteSettings: SiteSettings = {
   workingHours: 'Pazartesi - Cumartesi / 07:00 - 19:00',
   foundedYear: '1999',
   instagramUrl: 'https://www.instagram.com/zgrupinsaat',
-  whatsappUrl: 'https://wa.me/905399416521',
+  whatsappUrl: 'https://wa.me/905324499455',
   heroTitle: 'Hafriyat, temel kazısı ve nakliyatta, sahada güçlü plan',
   heroDescription:
     'Temel kazısı, dolgu, zemin hazırlığı, hafriyat nakliyesi, lowbed ve arazöz ihtiyaçlarında makine, kamyon ve sevkiyat düzenini sahanın gerçek akışına göre kuruyoruz.',

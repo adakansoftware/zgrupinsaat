@@ -1,14 +1,15 @@
 import type { MetadataRoute } from 'next'
+import { getFleetHref, listFleetItems } from '@/lib/fleet-service'
 import { listPublishedProjects } from '@/lib/project-service'
 import { getMetadataBase } from '@/lib/seo'
 import { getServiceHref, serviceDetails } from '@/lib/services-data'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const metadataBase = getMetadataBase()
-  const projects = await listPublishedProjects()
+  const [projects, fleetItems] = await Promise.all([listPublishedProjects(), listFleetItems()])
   const now = new Date()
 
-  const staticRoutes = ['/', '/about', '/services', '/projects', '/fleet', '/contact', '/kvkk-aydinlatma-metni']
+  const staticRoutes = ['/', '/about', '/services', '/projects', '/fleet', '/contact', '/kvkk-aydinlatma-metni', '/llms.txt', '/llms-full.txt']
   const serviceRoutes = serviceDetails.map((service) => getServiceHref(service.slug))
 
   return [
@@ -29,6 +30,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(project.updatedAt || project.createdAt),
       changeFrequency: 'monthly' as const,
       priority: 0.75,
+    })),
+    ...fleetItems.map((item) => ({
+      url: new URL(getFleetHref(item.slug), metadataBase).toString(),
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.68,
     })),
   ]
 }

@@ -16,6 +16,8 @@ const nextConfig = {
       './data/settings.json',
       './data/admin-issue-status.json',
       './data/admin-issue-history.json',
+      './node_modules/pg-cloudflare/dist/index.js',
+      './node_modules/pg-cloudflare/esm/index.mjs',
     ],
   },
   images: {

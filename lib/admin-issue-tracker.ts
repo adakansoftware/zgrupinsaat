@@ -2,6 +2,7 @@ import path from 'path'
 import { z } from 'zod'
 import { readJsonFileWithBackup, restorePrimaryJsonFile, runSerializedFileWrite, writeJsonFileAtomic } from '@/lib/file-storage'
 import { getAdminIssueCatalog } from '@/lib/admin-issue-catalog'
+import { shouldPersistOperationalState } from '@/lib/build-phase-core'
 import {
   adminIssueUpdateSchema,
   adminIssueStatusSchema,
@@ -138,6 +139,10 @@ function buildNewIssueState(id: string, at: string): AdminIssueState {
 
 export async function syncAdminIssueTracker() {
   const catalog = await getAdminIssueCatalog()
+
+  if (!shouldPersistOperationalState(process.env.NEXT_PHASE)) {
+    return readIssueStatesUnsafe()
+  }
 
   return runIssueTrackerMutation(({ states, history }) => {
     const now = new Date().toISOString()

@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ChevronRight, Phone } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { PUBLIC_PHONE_TEL } from '@/lib/contact-details'
 import { isRealPhoneValue } from '@/lib/contact-utils'
 import type { SiteSettings } from '@/lib/store'
 
@@ -69,7 +70,7 @@ export function Hero({ settings }: { settings: SiteSettings }) {
                 size="lg"
                 className="h-16 w-full gap-3 border-border/30 bg-card/30 px-6 text-sm font-bold uppercase tracking-[0.1em] text-foreground backdrop-blur-sm transition-all duration-300 hover:border-primary/30 hover:bg-card/50 sm:w-auto sm:px-10"
               >
-                <a href={`tel:${settings.contactPhone.replace(/\s+/g, '')}`}>
+                <a href={PUBLIC_PHONE_TEL}>
                   <Phone className="h-4 w-4" />
                   Telefonla Görüşün
                 </a>

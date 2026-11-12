@@ -85,7 +85,6 @@ export function SettingsForm({ initialValues }: Props) {
           <SectionHeader title="İletişim Kanalları" description="Telefon ve e-posta bilgilerini güncelleyin." />
           <div className="grid gap-4">
             <input className="input-premium w-full" value={form.contactPhone} onChange={(e) => update('contactPhone', e.target.value)} placeholder="Birincil telefon" />
-            <input className="input-premium w-full" value={form.contactPhoneSecondary} onChange={(e) => update('contactPhoneSecondary', e.target.value)} placeholder="İkincil telefon" />
             <input className="input-premium w-full" value={form.contactEmail} onChange={(e) => update('contactEmail', e.target.value)} placeholder="Birincil e-posta" />
             <input className="input-premium w-full" value={form.contactEmailSecondary} onChange={(e) => update('contactEmailSecondary', e.target.value)} placeholder="İkincil e-posta" />
           </div>
