@@ -1,23 +1,48 @@
 import { Pool, type PoolClient, type QueryResultRow } from 'pg'
+import { getCloudflareContext } from '@opennextjs/cloudflare'
+import { resolveDatabaseConnection } from '@/lib/database-connection-core'
 import { env } from '@/lib/env'
 
 declare global {
   var __zgrupPgPool: Pool | undefined
 }
 
-function createPool() {
+function getHyperdriveConnectionString() {
+  try {
+    return getCloudflareContext().env.HYPERDRIVE?.connectionString
+  } catch {
+    return undefined
+  }
+}
+
+function createPool(hyperdriveConnectionString?: string) {
   if (env.CONTENT_STORE !== 'postgres') {
     throw new Error('PostgreSQL havuzu yalnızca CONTENT_STORE=postgres iken oluşturulabilir.')
   }
 
+  const connection = resolveDatabaseConnection({
+    databaseUrl: env.DATABASE_URL ?? '',
+    hyperdriveConnectionString,
+  })
+
   return new Pool({
-    connectionString: env.DATABASE_URL,
+    ...connection,
     max: 4,
-    ssl: env.NODE_ENV === 'production' ? { rejectUnauthorized: true } : undefined,
+    ssl: hyperdriveConnectionString
+      ? undefined
+      : env.NODE_ENV === 'production'
+        ? { rejectUnauthorized: true }
+        : undefined,
   })
 }
 
 export function getDbPool() {
+  const hyperdriveConnectionString = getHyperdriveConnectionString()
+
+  if (hyperdriveConnectionString) {
+    return createPool(hyperdriveConnectionString)
+  }
+
   if (!globalThis.__zgrupPgPool) {
     globalThis.__zgrupPgPool = createPool()
   }

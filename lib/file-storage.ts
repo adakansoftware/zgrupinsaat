@@ -5,6 +5,10 @@ type ParseResultSource = 'primary' | 'backup' | 'default'
 
 const writeQueues = new Map<string, Promise<void>>()
 
+export function shouldRestorePrimaryJsonSource(source: ParseResultSource) {
+  return source === 'backup'
+}
+
 export async function ensureParentDir(filePath: string) {
   await fs.mkdir(path.dirname(filePath), { recursive: true })
 }
@@ -24,8 +28,6 @@ export async function readJsonFileWithBackup<T>(
   schema: { parse: (value: unknown) => T },
   defaultValue: T,
 ): Promise<{ data: T; source: ParseResultSource }> {
-  await ensureTextFile(filePath, JSON.stringify(defaultValue, null, 2))
-
   const candidates = [
     { path: filePath, source: 'primary' as const },
     { path: `${filePath}.bak`, source: 'backup' as const },

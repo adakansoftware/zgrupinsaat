@@ -1,5 +1,11 @@
 import path from 'path'
-import { readJsonFileWithBackup, restorePrimaryJsonFile, writeJsonFileAtomic } from '@/lib/file-storage'
+import bundledFleetContent from '@/data/fleet.json'
+import {
+  readJsonFileWithBackup,
+  restorePrimaryJsonFile,
+  shouldRestorePrimaryJsonSource,
+  writeJsonFileAtomic,
+} from '@/lib/file-storage'
 import { fleetContentSchema } from '@/lib/validation'
 
 export type FleetContent = Awaited<ReturnType<typeof getFleetContent>>
@@ -8,7 +14,7 @@ export type FleetModel = FleetItem['models'][number]
 export type FleetStat = FleetContent['stats'][number]
 
 const fleetFile = path.join(/*turbopackIgnore: true*/ process.cwd(), 'data', 'fleet.json')
-const defaultFleetContent = { stats: [], items: [] }
+const defaultFleetContent = fleetContentSchema.parse(bundledFleetContent)
 
 function assertUniqueSlugs(items: FleetItem[]) {
   const seen = new Set<string>()
@@ -51,7 +57,7 @@ export async function getFleetContent() {
   assertNonEmptyModels(content.items)
   assertModelCounts(content.items)
 
-  if (parsed.source !== 'primary') {
+  if (shouldRestorePrimaryJsonSource(parsed.source)) {
     await restorePrimaryJsonFile(fleetFile, content)
   }
 

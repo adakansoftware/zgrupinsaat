@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
+import { access, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
 import os from 'node:os'
 import path from 'node:path'
 
@@ -12,7 +12,7 @@ async function run() {
 
   const { normalizeAdminNextTarget } = await import('../lib/admin-redirect.ts')
   const { getAdminCookieName } = await import('../lib/auth-shared.ts')
-  const { readJsonFileWithBackup, updateJsonFileAtomic } = await import('../lib/file-storage.ts')
+  const { readJsonFileWithBackup, shouldRestorePrimaryJsonSource, updateJsonFileAtomic } = await import('../lib/file-storage.ts')
   const { getComparableOrigin, resolveAllowedOrigin } = await import('../lib/origin.ts')
   const { hashPasswordWithScrypt, isValidPasswordHashFormat, verifyPasswordAgainstHash } = await import('../lib/password-hash.ts')
   const { createSignedAdminSessionToken, isValidSignedAdminSessionToken } = await import('../lib/session-token-core.ts')
@@ -29,8 +29,27 @@ async function run() {
   const { isValidUuidRouteParam } = await import('../lib/route-params-core.ts')
   const { isCleanPublicPathUrl, isPathInside } = await import('../lib/path-security.ts')
   const { shouldPersistOperationalState } = await import('../lib/build-phase-core.ts')
+  const { isHealthReady } = await import('../lib/health-core.ts')
+  const { resolveDatabaseConnection } = await import('../lib/database-connection-core.ts')
   assert.equal(shouldPersistOperationalState('phase-production-build'), false)
   assert.equal(shouldPersistOperationalState(undefined), true)
+  assert.equal(isHealthReady({ contentStore: 'file', dataReady: true, databaseReady: false }), true)
+  assert.equal(isHealthReady({ contentStore: 'file', dataReady: false, databaseReady: true }), false)
+  assert.equal(isHealthReady({ contentStore: 'postgres', dataReady: false, databaseReady: true }), true)
+  assert.equal(isHealthReady({ contentStore: 'postgres', dataReady: true, databaseReady: false }), false)
+  assert.equal(shouldRestorePrimaryJsonSource('backup'), true)
+  assert.equal(shouldRestorePrimaryJsonSource('default'), false)
+  assert.deepEqual(
+    resolveDatabaseConnection({
+      databaseUrl: 'postgres://direct.example/db',
+      hyperdriveConnectionString: 'postgres://hyperdrive.local/db',
+    }),
+    { connectionString: 'postgres://hyperdrive.local/db', maxUses: 1 },
+  )
+  assert.deepEqual(
+    resolveDatabaseConnection({ databaseUrl: 'postgres://direct.example/db' }),
+    { connectionString: 'postgres://direct.example/db' },
+  )
   const {
     PUBLIC_PHONE_DISPLAY,
     PUBLIC_PHONE_TEL,
@@ -438,6 +457,15 @@ async function run() {
   )
 
   const tempDir = await mkdtemp(path.join(os.tmpdir(), 'sali-storage-test-'))
+  const missingFile = path.join(tempDir, 'missing.json')
+  const missing = await readJsonFileWithBackup(
+    missingFile,
+    { parse: (value: unknown) => value as string[] },
+    [],
+  )
+  assert.deepEqual(missing, { data: [], source: 'default' })
+  await assert.rejects(access(missingFile))
+
   const primaryFile = path.join(tempDir, 'projects.json')
   const backupFile = `${primaryFile}.bak`
 

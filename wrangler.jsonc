@@ -11,5 +11,11 @@
   },
   "observability": {
     "enabled": true
-  }
+  },
+  "hyperdrive": [
+    {
+      "binding": "HYPERDRIVE",
+      "id": "c685eaf683b649bd8495b38a0d831454"
+    }
+  ]
 }
