@@ -12,6 +12,12 @@
   "observability": {
     "enabled": true
   },
+  "routes": [
+    {
+      "pattern": "zgrupinsaat.com",
+      "custom_domain": true
+    }
+  ],
   "hyperdrive": [
     {
       "binding": "HYPERDRIVE",
